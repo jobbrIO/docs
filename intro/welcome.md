@@ -32,16 +32,16 @@ Have a look at the [Jobbr Demo repository](https://github.com/jobbrIO/jobbr-demo
 ## Team
 Jobbr was handcrafter by the following talented software engineers @ Zühlke Engineering AG, Switzerland.
 
-**Michael Schnyder**
+### Michael Schnyder
 Lead Software Architect @ [Zühlke](https://www.zuehlke.com/ch/de/), creator of [http://www.jobbr.io](Jobbr) and .NET Trainer. Focused on .NET and modern web applications.
 
-**Oliver Zürcher**
+### Oliver Zürcher
 @olibanjoli
 
-**Mark Odermatt**
+### Mark Odermatt
 @mo85
 
-**Peter Gfader**
+### Peter Gfader
 @peitor
 
 # Zühlke Portal Solutions
