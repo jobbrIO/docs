@@ -44,7 +44,7 @@ Lead Software Architect @ [Zühlke](https://www.zuehlke.com/ch/de/), creator of 
 ### Peter Gfader
 @peitor
 
-# Zühlke Portal Solutions
+## Zühlke Portal Solutions
 Jobbr is part of the Zühlke Portal Framework. Portal solutions connect existing data, systems and services to a collaborative ecosystem and give users a common digital home. This makes the same data accessible and usable for highly varied customer and user groups.
 
 If you want to get more information in how creating added value at the customer interface, please head to [https://www.zuehlke.com/ch/en/markettrends/digital-transformation/portals/](https://www.zuehlke.com/ch/en/markettrends/digital-transformation/portals/)
