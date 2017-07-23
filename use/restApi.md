@@ -52,7 +52,7 @@ Additional configuration is not available at time of writing.
 
 ## Rest API Reference
 
-### /status Endpoint
+### /status
 The status endpoint is for testing purposes only. Even if does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
 
     GET http://localhost:8765/api/status
@@ -63,18 +63,20 @@ Does usually just return:
 
     "Fine"
 
-### /configuration Endpoint
+### /configuration
 If you need to check the current configuration, use the `/configuration` endpoint.
 
     GET http://localhost:8765/api/status
 
 Which will return a object that represents the current Web-API configuration.
 
+    HTTP/1.1 200 OK
+
     {
         "backendAddress": "http://localhost:8765/api"
     }
 
-### /fail Endpoint
+### /fail
 If you are curious if logging is setup correctly or if any reverse proxies are interfering with HTTP500 error codes, you can use this endpoint
 
     GET /fail
@@ -87,7 +89,7 @@ Will raise an unhandled exception and usually shows an error response similar to
     "message": "An error has occurred.",
     "exceptionMessage": "This has failed!",
     "exceptionType": "System.Exception",
-    "stackTrace": "   at Jobbr.Server.WebAPI.Core.Controller.DefaultController.Fail() in C:\\projects\\jobbr-webapi\\source\\Jobbr.Server.WebAPI\\Core\\Controller\\DefaultController.cs:line 42\r\n   at lambda_method(Closure , Object , Object[] )\r\n   at 
+    "stackTrace": "   at Jobbr.Server.WebAPI.Core.Controller.DefaultController.Fail() in DefaultController.cs:line 42
     ...
     }
 
