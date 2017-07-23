@@ -45,7 +45,7 @@ builder.AddWebApi(config =>
 	config.BaseUrl = "http://localhost:8765/api";
 });
 ```
-**Note**: Please refer to [https://msdn.microsoft.com/en-us/library/system.net.httplistener(v=vs.110).aspx](https://msdn.microsoft.com/en-us/library/system.net.httplistener(v=vs.110).aspx) for the supported URI prefixes depending on your operating system and .NET Runtime version.
+**Note**: Please refer to the [MSDN Documentation for HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener(v=vs.110).aspx#Anchor_6) for the supported URI prefixes depending on your operating system and .NET Runtime version.
 
 #### Configuration Overview
 Additional configuration is not available at time of writing.
