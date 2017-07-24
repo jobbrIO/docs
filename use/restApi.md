@@ -29,7 +29,7 @@ var server = builder.Create();
 server.Start();
 ```
 
-### Configuration
+### Plugin Configuration
 If you don't specify any value for `BackendAddress` the server will try to find a free port automatically and binds to all available interfaces. The endpoint is logged and usually shown in the console, but this approach is not suggested in production scenarios, see below:
 
 	[WARN]  (Jobbr.Server.WebAPI.Core.WebHost) There was no BackendAdress specified. Falling back to random port, which is not guaranteed to work in production scenarios
@@ -47,12 +47,18 @@ builder.AddWebApi(config =>
 ```
 **Note**: Please refer to the [MSDN Documentation for HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener(v=vs.110).aspx#Anchor_6) for the supported URI prefixes depending on your operating system and .NET Runtime version.
 
-#### Configuration Overview
-Additional configuration is not available at time of writing.
-
 ## Rest API Reference
 
-### /status
+### /jobs - Managing Jobs
+You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the APi, or both. The followig APIs are made for Managing Jobs
+
+### /trigger - Manage Trigger
+
+### /jobruns - Watch status
+
+
+### Generic Endpoints
+#### /status
 The status endpoint is for testing purposes only. Even if does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
 
     GET http://localhost:8765/api/status
@@ -63,7 +69,7 @@ Does usually just return:
 
     "Fine"
 
-### /configuration
+#### /configuration
 If you need to check the current configuration, use the `/configuration` endpoint.
 
     GET http://localhost:8765/api/status
@@ -76,7 +82,7 @@ Which will return a object that represents the current Web-API configuration.
         "backendAddress": "http://localhost:8765/api"
     }
 
-### /fail
+#### /fail
 If you are curious if logging is setup correctly or if any reverse proxies are interfering with HTTP500 error codes, you can use this endpoint
 
     GET /fail
