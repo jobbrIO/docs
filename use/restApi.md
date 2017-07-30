@@ -49,10 +49,124 @@ builder.AddWebApi(config =>
 
 ## Rest API Reference
 
-### /jobs - Managing Jobs
-You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the APi, or both. The followig APIs are made for Managing Jobs
+### /jobs - Manage Jobs
+You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the APi, or both. The followig APIs are made for managing Jobs
+
+#### Get all Jobs
+The following endpoint retuns all registered jobs as an array:
+
+    GET http://localhost:8765/api/jobs
+
+##### Successful Response
+
+Is indicated by 
+
+    HTTP/1.1 200 OK
+
+and the followig example payload
+
+```json
+[
+    {
+        "id": 1,
+        "uniqueName": "ProgressJob",
+        "type": "Demo.MyJobs.ProgressJob",
+        "parameters": { 
+            "param1" : "test", 
+            "param2" : "anothervalue" 
+        },
+        "createdDateTimeUtc": "2015-03-04T17:40:00",
+        "createdDateTimeUtc": "2017-07-30T13:40:00"
+    }
+]
+```
+
+#### Single Job details
+Details about a single job (including triggers) can be retreived by accessing the detail route of a job
+
+    GET http://localhost:8765/api/jobs/1
+
+
+##### Sucessful Response
+
+If the job is found, the response is indicated by
+
+    HTTP/1.1 200 OK
+
+and the following example data is returned. Note the addition of **Triggers**
+
+```json
+[
+    {
+        "id": 1,
+        "uniqueName": "ProgressJob",
+        "type": "Demo.MyJobs.ProgressJob",
+        "parameters": { 
+            "param1" : "test", 
+            "param2" : "anothervalue" 
+        },
+        "createdDateTimeUtc": "2015-03-04T17:40:00",
+        "createdDateTimeUtc": "2017-07-30T13:40:00",
+        "trigger": [
+            {
+                "triggerType": "Recurring",
+                "id": 1,
+                "isActive": true
+            }    
+        ]
+    }
+]        
+```
+
+##### Error Responses
+If no job exists with the given id, an error will be returned
+
+#### Add a new Job
+
+Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by the Rest Api.
+
+**Parameters**
+* `uniqueName`: Unique name if the job (Required)
+* `type` : Name of the CLR Type that should be used (Required)
+* `title` : Rememberable name
+* `parameters`: Object that will be used as JobParameters
+
+##### Sample Request
+
+    POST http://localhost:8765/api/jobs
+
+```json
+[
+    {
+        "id": 1,
+        "uniqueName": "ProgressJob",
+        "type": "Demo.MyJobs.ProgressJob",
+        "parameters": { 
+            "param1" : "test", 
+            "param2" : "anothervalue" 
+        },
+    }
+]
+```    
+
+##### Successful Response
+
+    201 Created 
+    Location: /api/jobs/2
+
+```json
+{
+    "id": 2,
+    "uniqueName": "ProgressJob2",
+    "type": "Demo.MyJobs.ProgressJob"
+}    
+```
+##### Error Responses
+
+If there is already a job with the same UniqueName, the error `409 CONFLICT` will be returned.
 
 ### /trigger - Manage Trigger
+Triggers are used to either add future or an instant trigger to a job. The trigger is causig a job to run.
 
 ### /jobruns - Watch status
 
