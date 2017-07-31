@@ -126,9 +126,8 @@ If no job exists with the given id, an error will be returned
 Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by the Rest Api.
 
 **Parameters**
-* `uniqueName`: Unique name if the job (Required)
-* `type` : Name of the CLR Type that should be used (Required)
-* `title` : Rememberable name
+* `uniqueName`: Unique name if the job (**Required**)
+* `type` : Name of the CLR Type that should be used (**Required**)
 * `parameters`: Object that will be used as JobParameters
 
 ##### Sample Request
@@ -156,7 +155,6 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
 
 ```json
 {
-    "id": 2,
     "uniqueName": "ProgressJob2",
     "type": "Demo.MyJobs.ProgressJob"
 }    
@@ -166,7 +164,7 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
 If there is already a job with the same UniqueName, the error `409 CONFLICT` will be returned.
 
 ### /trigger - Manage Trigger
-Triggers are used to either add future or an instant trigger to a job. The trigger is causig a job to run.
+Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run.
 
 ### /jobruns - Watch status
 
