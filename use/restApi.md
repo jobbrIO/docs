@@ -143,8 +143,8 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
         "parameters": { 
             "param1" : "test", 
             "param2" : "anothervalue" 
-        },
-    }
+        }
+    },
 ]
 ```    
 
@@ -190,7 +190,8 @@ which will be replied with
         "plannedStartUtc": "2017-07-30T10:53:00Z",
         "auctualStartUtc": "2017-07-30T10:53:00.5132852Z",
         "auctualEndUtc": "2017-07-30T10:53:19.335589Z"
-    }]
+    },
+]
 ```
 
 *Note:*: Only single entry shown.
