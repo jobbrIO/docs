@@ -49,7 +49,7 @@ builder.AddWebApi(config =>
 
 ## Rest API Reference
 
-### /jobs - Manage Jobs
+### /jobs Endpoint
 You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the APi, or both. The followig APIs are made for managing Jobs
 
 #### Get all Jobs
@@ -163,10 +163,42 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
 
 If there is already a job with the same UniqueName, the error `409 CONFLICT` will be returned.
 
-### /trigger - Manage Trigger
+#### JobRuns for Job
+If you wan't to get all runs for a specifc job, you can use the subresource `runs` on every job. A job **can be identified** by its internal `id` or the user specific `uniqueName`.
+
+**Url Parameters**
+* `id` : Internal Id of the Job (**Required**)
+* `uniqueName`: Unique name if the job (**Required**)
+
+
+    GET http://localhost:8765/api/jobs/1/runs
+
+    GET http://localhost:8765/api/jobs/progressJob/runs
+
+##### Successful Response
+
+which will be replied with
+
+```json
+[
+    {
+        "jobId": 1,
+        "triggerId": 1,
+        "jobRunId": 1,
+        "state": "Completed",
+        "progress": 100,
+        "plannedStartUtc": "2017-07-30T10:53:00Z",
+        "auctualStartUtc": "2017-07-30T10:53:00.5132852Z",
+        "auctualEndUtc": "2017-07-30T10:53:19.335589Z"
+    }]
+```
+
+*Note:*: Only single entry shown.
+
+### /trigger Endpoint
 Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run.
 
-### /jobruns - Watch status
+### /jobruns Endpoint
 
 
 ### Generic Endpoints
