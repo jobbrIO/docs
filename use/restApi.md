@@ -297,11 +297,11 @@ Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
 * `triggerId`: Id of the trigger (**Required**)
 
 
-Example request
+##### Example request
 
     GET http://localhost:8765/api/jobs/1/triggers/3
 
-Successful response
+##### Successful response
 
     HTTP/1.1 200 OK
     Content-Type: application/json
