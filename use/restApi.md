@@ -207,7 +207,156 @@ which will be replied with
 *Note:*: Only single entry shown.
 
 ### /trigger Endpoint
-Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run.
+Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run. Triggers are a subresource of `/jobs`
+
+There are different types of triggers, each with additional attributes:
+
+| Type          | Purpose                                                                                     |
+|---------------|---------------------------------------------------------------------------------------------|
+| `instant`     | Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`) |
+| `scheduled`   | Schedules a a jobrun that starts on the specified `startDateTimeUtc`                        |
+| `recurring`   | Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc` and can made single instance by setting `noParallelExecution` to `true`  |
+
+The trigger type itself is specified by the property `triggerType`.
+
+#### Get Triggers for Job
+
+Triggers are attached to a job ands therefore accessible as a subresource of a job identified by it's  internal `id` or the specified `uniqueName`.
+
+**Url Parameters**
+* `id` : Internal Id of the Job (**Required**)
+* `uniqueName`: Unique name if the job (**Required**)
+
+Jobs can be identified by both their `id` or `uniqueName`
+
+    GET http://localhost:8765/api/jobs/1/triggers
+
+    GET http://localhost:8765/api/jobs/progressJob/triggers
+
+##### Successful Response
+
+which will be replied with a list of all triggers for this job where some of the properties are valid for all types while others are only applicable to certain types
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+```json
+[
+    {
+        "id": 1,
+        "jobId": 1,
+        "isActive": true,
+        "comment": "Send the report now!!!",
+        "parameters": {
+            "printReportId" : "12", 
+            "recpient": "me@inbox.com",
+        },
+        "userId": "user123",
+        "userDisplayName": "Michael Schnyder",
+
+        "delayedMinutes": 0,
+    },
+    {
+        "id": 2,
+        "jobId": 1,
+        "isActive": true,
+        "comment": "Send report once at 3pm",
+        "parameters": {
+            "printReportId" : "12", 
+            "recpient": "anotherguy@inbox.com",
+        },
+        "userId": "user123",
+        "userDisplayName": "Michael Schnyder",
+
+        "startDateTimeUtc": "2017-07-30T15:00:00Z",
+    },
+    {
+        "id": 3,
+        "jobId": 1,
+        "isActive": true,
+        "comment": "Daily Report @ 9pm",
+        "parameters": {
+            "printReportId" : "12", 
+            "recpient": "anotherguy@inbox.com",
+        },
+        "userId": "user123",
+        "userDisplayName": "Michael Schnyder",
+
+        "definition": "0 15 * * *",
+        "startDateTimeUtc": "2017-01-1T00:00:00Z",
+        "endDateTimeUtc": "2022-12-31T00:00:00Z",
+        "noParallelExecution": true
+    },
+]
+```
+| Please note that the API does not expose the trigger types on the list level.
+
+#### Get details for Trigger
+If you want to get one specific trigger only, you need to address the trigger directly as a subresource of the job.
+
+Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
+* `jobId` : Internal Id of the Job (**Required**)
+* `triggerId`: Id of the trigger (**Required**)
+
+
+Example request
+
+    GET http://localhost:8765/api/jobs/1/triggers/3
+
+Successful response
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+With payload
+
+```json
+{
+    "id": 3,
+    "triggerType": "recurring",
+    "jobId": 1,
+    "isActive": true,
+    "comment": "Daily Report @ 9pm",
+    "parameters": {
+        "printReportId" : "12", 
+        "recpient": "anotherguy@inbox.com",
+    },
+    "userId": "user123",
+    "userDisplayName": "Michael Schnyder",
+
+    "definition": "0 15 * * *",
+    "startDateTimeUtc": "2017-01-1T00:00:00Z",
+    "endDateTimeUtc": "2022-12-31T00:00:00Z",
+    "noParallelExecution": true
+}
+```
+| Note: The type of the trigger is now exposed by the property `triggerType`.
+
+#### Add a trigger
+
+Please note that each trigger type has a couple of properties that are common, like
+
+**Parameters**
+* `triggerType`: Type of the trigger, see above (**Required**)
+* `isActive`: Specifies if the trigger is active (**Required**)
+* `parameters`: Object that will be used as RunParameters
+* `comment`: Any arbitrary comment or additional information for this trigger
+* `userId`: The principal under which the job should be started
+* `userDisplayName`: Any arbitrary that could be the name of the user that triggered the job
+
+##### Sample Request (Instant)
+
+TODO
+
+##### Sample Request (Scheduled)
+
+TODO
+
+##### Sample Request (Recurring)
+
+TODO
+
+
 
 ### /jobruns Endpoint
 
