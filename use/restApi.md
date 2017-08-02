@@ -332,9 +332,7 @@ With payload
 
 #### Add a trigger
 
-Please note that each trigger type has a couple of properties that are common, like
-
-**Parameters**
+Please note that each trigger type has a couple of properties that are common, especially
 * `triggerType`: Type of the trigger, see above (**Required**)
 * `isActive`: Specifies if the trigger is active (**Required**)
 * `parameters`: Object that will be used as RunParameters
