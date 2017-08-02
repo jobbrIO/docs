@@ -340,23 +340,82 @@ Please note that each trigger type has a couple of properties that are common, e
 * `userId`: The principal under which the job should be started
 * `userDisplayName`: Any arbitrary that could be the name of the user that triggered the job
 
-###### Example Request (Instant)
-The minimal example to add an **instant** trigger is shown below:
-TODO
+> Both `uniqueName` and internal job `id` is supported on this route. Examples only show identification of job by **internal id**
 
-###### Example Request (Scheduled)
+##### Example Request (Instant)
+The minimal example to add an **instant** trigger is shown below:
+
+    POST http://localhost:8765/api/jobs/1/triggers HTTP/1.1
+    Content-Type: application/json
+
+```json
+{ 
+    "triggerType" : "instant"
+}
+
+```    
+> `isActive` is not required and will be automatically set to `true`, because an not active instant trigger would be a joke.
+
+**Optional Properties** (Type related) <br/>
+* `delayedMinutes`: Amount of time (in Minutes) in which the start shall be delayed
+
+##### Example Request (Scheduled)
 The minimal example to add an **scheduled** trigger is shown below:
 
-TODO
+    POST http://localhost:8765/api/jobs/1/truggers HTTP/1.1
+    Content-Type: application/json
 
-###### Example Request (Recurring)
+```json
+{
+    "triggerType" : "instant",
+    "isActive": true,
+    "startDateTimeUtc": "2017-07-30T15:00:00Z",
+}
+```    
+
+**Optional Properties** (Type related) <br/>
+*none*
+
+##### Example Request (Recurring)
 The minimal example to add an **recurring** trigger is shown below:
 
-TODO
+    POST http://localhost:8765/api/jobs/1/triggers HTTP/1.1
+    Content-Type: application/json
+
+```json
+{
+    "triggerType" : "recurring",
+    "isActive": true,
+    "definition": "0 23 * * *",
+}
+```    
+
+**Optional Properties** (Type related) <br/>
+* `startDateTimeUtc`: Start of time range when trigger is valid
+* `endDateTimeUtc`: End of time range when trigger is valid
+* `noParallelExecution`: Indicates if this trigger is allowed to cause a new job while a job caused by the same trigger is still running.
 
 ##### Successful Response
 
-TODO
+A successful response will return the back the created trigger and the location to its details by a `201 Created` Response.
+
+**Example**
+
+    201 Created 
+    Location: /api/jobs/1/triggers/4
+    Content-Type: application/json
+
+and the payload
+
+```json
+{
+    "id": 4,
+    "triggerType" : "recurring",
+    "isActive": true,
+    "definition": "0 23 * * *",
+}
+```
+
 
 #### Update a Trigger
 In the rare cases you'll need to update a trigger before the job run has actually started, there is an endpoint for Patching existing triggers of a job
@@ -416,6 +475,7 @@ To update the scheduled start of a trigger to anything else in future, the follo
 
 ### /jobruns Endpoint
 
+TODO
 
 ### Generic Endpoints
 #### /status
