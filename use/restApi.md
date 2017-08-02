@@ -145,7 +145,7 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
         "uniqueName": "ProgressJob",
         "type": "Demo.MyJobs.ProgressJob",
         "parameters": { 
-            "param1" : "test", 
+            "param1" : "jobParameter1", 
             "param2" : "anothervalue" 
         }
     },
