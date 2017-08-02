@@ -99,26 +99,24 @@ If the job is found, the response is indicated by
 and the following example data is returned. Note the addition of **Triggers**
 
 ```json
-[
-    {
-        "id": 1,
-        "uniqueName": "ProgressJob",
-        "type": "Demo.MyJobs.ProgressJob",
-        "parameters": { 
-            "param1" : "test", 
-            "param2" : "anothervalue" 
-        },
-        "createdDateTimeUtc": "2015-03-04T17:40:00",
-        "createdDateTimeUtc": "2017-07-30T13:40:00",
-        "trigger": [
-            {
-                "triggerType": "Recurring",
-                "id": 1,
-                "isActive": true
-            }    
-        ]
-    }
-]        
+{
+    "id": 1,
+    "uniqueName": "ProgressJob",
+    "type": "Demo.MyJobs.ProgressJob",
+    "parameters": { 
+        "param1" : "test", 
+        "param2" : "anothervalue" 
+    },
+    "createdDateTimeUtc": "2015-03-04T17:40:00",
+    "createdDateTimeUtc": "2017-07-30T13:40:00",
+    "trigger": [
+        {
+            "triggerType": "Recurring",
+            "id": 1,
+            "isActive": true
+        }    
+    ]
+}        
 ```
 
 ##### Error Responses
