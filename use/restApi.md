@@ -470,10 +470,144 @@ To update the scheduled start of a trigger to anything else in future, the follo
 ``` 
 
 ### /jobruns Endpoint
+Jobruns are a result of a job and a trigger that has caused the jobrun itself. JobRuns are read-only.
 
-TODO
+#### Query JobRuns
+There is no possibility to get all jobruns, but there are query options that allow querying jobruns by
+* `userId`: Example: `http://localhost:8765/api/jobruns?userId=user123`
+* `userDisplayName`: Example: `http://localhost:8765/api/jobruns?userDisplayName=Testuser`
+* `jobId` and `triggerId`: Example: `http://localhost:8765/api/jobruns?jobId=3&triggerId=4`
+
+##### Successful Response
+
+A list of matching jobruns will be returned:
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+```json
+[
+    {
+        "jobId":1,
+        "triggerId":3,
+        "jobRunId":1,
+        "jobName":"ProgressJob",
+        "state":"Completed",
+        "progress":100.0,
+        "plannedStartUtc":"2017-08-02T20:25:00Z",
+        "auctualStartUtc":"2017-08-02T20:25:00.4674296Z",
+        "auctualEndUtc":"2017-08-02T20:25:18.8927592Z",
+        "jobTitle":"ProgressJob",
+        "jobParameter": {
+            "param1" : "jobParameter1", 
+            "param2" : "anothervalue" 
+        },
+        "instanceParameter": {
+            "printReportId" : "12", 
+            "recpient": "anotherguy@inbox.com",
+        },
+        "artefacts": [
+            {
+                "filename": "report.log",
+                "size": 1258,
+                "contentType": "text/plain"
+            },
+            {
+                "filename": "sent-mail.eml",
+                "size": 258478,
+                "contentType": "message/rfc822"
+            }            
+        ]
+    },
+    {
+        "jobId":1,
+        "triggerId":3,
+        "jobRunId":2,
+        "jobName":"ProgressJob",
+        "state":"Processing",
+        "progress":78.0,
+        "plannedStartUtc":"2017-08-02T20:26:00Z",
+        "auctualStartUtc":"2017-08-02T20:26:00.4682476Z",
+        "jobTitle":"ProgressJob",
+        "jobParameter": {
+            "param1" : "jobParameter1", 
+            "param2" : "anothervalue" 
+        },
+        "instanceParameter": {
+            "printReportId" : "12", 
+            "recpient": "anotherguy@inbox.com",
+        }        
+    },
+]
+```
+
+> Note that the second job has not yet completed and thus did not collect any artefacts from the Run-Directory.
+
+#### Single JobRun details
+More detailed informtion about a specific JobRun can be found on the JobRun details route.
+
+GET http://localhost:8765/api/jobruns/1 HTTP/1.1
+
+##### Sucessful Response
+
+If the jobrun is found, the response is indicated by
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+and the following example data is returned. Note the addition of **Triggers**
+
+```json
+{
+    "jobId":1,
+    "triggerId":3,
+    "jobRunId":1,
+    "jobName":"ProgressJob",
+    "state":"Completed",
+    "progress":100.0,
+    "plannedStartUtc":"2017-08-02T20:25:00Z",
+    "auctualStartUtc":"2017-08-02T20:25:00.4674296Z",
+    "auctualEndUtc":"2017-08-02T20:25:18.8927592Z",
+    "jobTitle":"ProgressJob",
+    "jobParameter": {
+        "param1" : "jobParameter1", 
+        "param2" : "anothervalue" 
+    },
+    "instanceParameter": {
+        "printReportId" : "12", 
+        "recpient": "anotherguy@inbox.com",
+    },
+    "artefacts": [
+        {
+            "filename": "report.log",
+            "size": 1258,
+            "contentType": "text/plain"
+        },
+        {
+            "filename": "sent-mail.eml",
+            "size": 258478,
+            "contentType": "message/rfc822"
+        }            
+    ]
+}      
+```
+
+#### Download Artefact 
+Artefacts are listed as object array in the property `artefacts`. To download a specific artefact, a `GET`-Request is required.
+
+    http://localhost:8765/api/jobruns/1/artefact/report.log HTTP/1.1
+
+and the file with the approriate headers will be returned
+
+    HTTP/1.1 200 OK
+    Content-Type: text/plain
+    Content-Lenght: 1258
+
+    ....
+
 
 ### Generic Endpoints
+
 #### /status
 The status endpoint is for testing purposes only. Even if does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
 
