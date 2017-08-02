@@ -209,13 +209,11 @@ which will be replied with
 ### /trigger Endpoint
 Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run. Triggers are a subresource of `/jobs`
 
-There are different types of triggers, each with additional attributes:
+There are [different types](triggers.html) of triggers, each with additional attributes:
 
-| Type          | Purpose                                                                                     |
-|---------------|---------------------------------------------------------------------------------------------|
-| `instant`     | Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`) |
-| `scheduled`   | Schedules a a jobrun that starts on the specified `startDateTimeUtc`                        |
-| `recurring`   | Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc` and can made single instance by setting `noParallelExecution` to `true`  |
+* `instant`: Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`)
+* `scheduled`: Schedules a a jobrun that starts on the specified `startDateTimeUtc`  
+* `recurring`: Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc` and can made single instance by setting `noParallelExecution` to `true`
 
 The trigger type itself is specified by the property `triggerType`.
 
@@ -291,7 +289,7 @@ which will be replied with a list of all triggers for this job where some of the
 ```
 | Please note that the API does not expose the trigger types on the list level.
 
-#### Get details for Trigger
+#### Single Trigger details
 If you want to get one specific trigger only, you need to address the trigger directly as a subresource of the job.
 
 Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
