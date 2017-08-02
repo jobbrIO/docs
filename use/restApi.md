@@ -206,7 +206,7 @@ which will be replied with
 
 *Note:*: Only single entry shown.
 
-### /trigger Endpoint
+### /triggers Endpoint
 Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run. Triggers are a subresource of `/jobs`
 
 There are [different types](triggers.html) of triggers, each with additional attributes:
