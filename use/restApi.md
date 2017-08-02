@@ -186,6 +186,9 @@ If you wan't to get all runs for a specifc job, you can use the subresource `run
 
 which will be replied with
 
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
 ```json
 [
     {
