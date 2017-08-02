@@ -342,15 +342,21 @@ Please note that each trigger type has a couple of properties that are common, l
 * `userId`: The principal under which the job should be started
 * `userDisplayName`: Any arbitrary that could be the name of the user that triggered the job
 
-##### Sample Request (Instant)
+###### Example Request (Instant)
+The minimal example to add an **instant** trigger is shown below:
+TODO
+
+###### Example Request (Scheduled)
+The minimal example to add an **scheduled** trigger is shown below:
 
 TODO
 
-##### Sample Request (Scheduled)
+###### Example Request (Recurring)
+The minimal example to add an **recurring** trigger is shown below:
 
 TODO
 
-##### Sample Request (Recurring)
+##### Successful Response
 
 TODO
 
