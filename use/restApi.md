@@ -215,7 +215,7 @@ There are [different types](triggers.html) of triggers, each with additional att
 
 The trigger type itself is specified by the property `triggerType`.
 
-#### Get Triggers for Job
+#### Get all Triggers for Job
 
 Triggers are attached to a job ands therefore accessible as a subresource of a job identified by it's  internal `id` or the specified `uniqueName`.
 
@@ -285,7 +285,7 @@ which will be replied with a list of all triggers for this job where some of the
     },
 ]
 ```
-| Please note that the API does not expose the trigger types on the list level.
+> Please note that the API does not expose the trigger types on the list level.
 
 #### Single Trigger details
 If you want to get one specific trigger only, you need to address the trigger directly as a subresource of the job.
@@ -326,7 +326,7 @@ With payload
     "noParallelExecution": true
 }
 ```
-| Note: The type of the trigger is now exposed by the property `triggerType`.
+> Note: The type of the trigger is now exposed by the property `triggerType`.
 
 #### Add a trigger
 
@@ -350,7 +350,6 @@ The minimal example to add an **instant** trigger is shown below:
 { 
     "triggerType" : "instant"
 }
-
 ```    
 > `isActive` is not required and will be automatically set to `true`, because an not active instant trigger would be a joke.
 
@@ -413,7 +412,6 @@ and the payload
     "definition": "0 23 * * *",
 }
 ```
-
 
 #### Update a Trigger
 In the rare cases you'll need to update a trigger before the job run has actually started, there is an endpoint for Patching existing triggers of a job
