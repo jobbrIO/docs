@@ -403,7 +403,7 @@ To update the scheduled start of a trigger to anything else in future, the follo
 ##### Sample Request (Recurring)
 To update the scheduled start of a trigger to anything else in future, the following call is required:
 
-    PATCH http://localhost:8765/api/jobs/1/triggers/2 HTTP/1.1
+    PATCH http://localhost:8765/api/jobs/1/triggers/3 HTTP/1.1
     Content-Type: application/json
 
 ```json
