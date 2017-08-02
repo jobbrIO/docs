@@ -55,13 +55,15 @@ You could either configure your Jobs by the RepositoryBuilder in C# code or crea
 #### Get all Jobs
 The following endpoint retuns all registered jobs as an array:
 
-    GET http://localhost:8765/api/jobs
+    GET http://localhost:8765/api/jobs HTTP/1.1
+
 
 ##### Successful Response
 
 Is indicated by 
 
     HTTP/1.1 200 OK
+    Content-Type: application/json
 
 and the followig example payload
 
@@ -84,7 +86,7 @@ and the followig example payload
 #### Single Job details
 Details about a single job (including triggers) can be retreived by accessing the detail route of a job
 
-    GET http://localhost:8765/api/jobs/1
+    GET http://localhost:8765/api/jobs/1 HTTP/1.1
 
 
 ##### Sucessful Response
@@ -92,6 +94,7 @@ Details about a single job (including triggers) can be retreived by accessing th
 If the job is found, the response is indicated by
 
     HTTP/1.1 200 OK
+    Content-Type: application/json
 
 and the following example data is returned. Note the addition of **Triggers**
 
@@ -132,7 +135,8 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
 
 ##### Sample Request
 
-    POST http://localhost:8765/api/jobs
+    POST http://localhost:8765/api/jobs HTTP/1.1
+    Content-Type: application/json
 
 ```json
 [
@@ -152,6 +156,9 @@ Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by
 
     201 Created 
     Location: /api/jobs/2
+    Content-Type: application/json
+
+and the payload
 
 ```json
 {
@@ -206,7 +213,7 @@ Triggers are used to either add future or instant triggers to a job. The trigger
 #### /status
 The status endpoint is for testing purposes only. Even if does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
 
-    GET http://localhost:8765/api/status
+    GET http://localhost:8765/api/status HTTP/1.1
 
 Does usually just return:
 
@@ -221,7 +228,7 @@ If you need to check the current configuration, use the `/configuration` endpoin
 
 Which will return a object that represents the current Web-API configuration.
 
-    HTTP/1.1 200 OK
+    HTTP/1.1 200 OK 
 
     {
         "backendAddress": "http://localhost:8765/api"
@@ -230,7 +237,7 @@ Which will return a object that represents the current Web-API configuration.
 #### /fail
 If you are curious if logging is setup correctly or if any reverse proxies are interfering with HTTP500 error codes, you can use this endpoint
 
-    GET /fail
+    GET /fail HTTP/1.1
 
 Will raise an unhandled exception and usually shows an error response similar to 
 
