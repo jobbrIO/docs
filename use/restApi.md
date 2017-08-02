@@ -659,7 +659,7 @@ After installation, you might provide the base url where the api can be found. S
 
 ```c#
 using Jobbr.Client;
-using Jobbr.WebAPI.Common.Models;
+using Jobbr.Server.WebAPI.Model;
 
 // ...
 
