@@ -360,7 +360,61 @@ TODO
 
 TODO
 
+#### Update a Trigger
+In the rare cases you'll need to update a trigger before the job run has actually started, there is an endpoint for Patching existing triggers of a job
 
+Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
+* `jobId` : Internal Id of the Job (**Required**)
+* `triggerId`: Id of the trigger (**Required**)
+
+Only the following changes are possible
+* Change `isActive` from `true` to `false` or vice-versa
+* Adjust Cron-Definition of a Recurring-Trigger
+* Change `StarteDateUtc` to any value in the future of a ScheduledTrigger
+
+Each request needs to contain the following properties
+* `isActive`: Specifies if the trigger is active (**Required**)
+* `triggerType`: Type of the trigger, see above (**Required for non-instant trigger types**)
+
+##### Sample Request (Instant)
+To disable the trigger with id 1, the following call needs to be executed:
+
+    PATCH http://localhost:8765/api/jobs/1/triggers/1 HTTP/1.1
+    Content-Type: application/json
+
+```json
+{
+    "isActive": false,
+},
+``` 
+
+##### Sample Request (Scheduled)
+To update the scheduled start of a trigger to anything else in future, the following call is required:
+
+    PATCH http://localhost:8765/api/jobs/1/triggers/2 HTTP/1.1
+    Content-Type: application/json
+
+```json
+{
+    "triggerType": "scheduled",
+    "isActive": true,
+    "startDateTimeUtc": "2017-08-04T23:00:00Z",
+},
+``` 
+
+##### Sample Request (Recurring)
+To update the scheduled start of a trigger to anything else in future, the following call is required:
+
+    PATCH http://localhost:8765/api/jobs/1/triggers/2 HTTP/1.1
+    Content-Type: application/json
+
+```json
+{
+    "triggerType": "recurring",
+    "isActive": true,
+    "definition": "0 22 * * *",
+},
+``` 
 
 ### /jobruns Endpoint
 
