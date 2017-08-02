@@ -548,6 +548,7 @@ More detailed informtion about a specific JobRun can be found on the JobRun deta
 
 GET http://localhost:8765/api/jobruns/1 HTTP/1.1
 
+
 ##### Sucessful Response
 
 If the jobrun is found, the response is indicated by
