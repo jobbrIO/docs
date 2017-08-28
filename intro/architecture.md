@@ -11,5 +11,5 @@ List of CM and responsabilities? Very short to give an overview what is abstract
 
 Picture and reasoning, can contain infos from meeting notes
 
-![Package Architecture](JobbrPackageArchitecture.png)
+[![Package Architecture](JobbrPackageArchitecture.png)](https://raw.githubusercontent.com/jobbrIO/docs/master/intro/JobbrPackageArchitecture.png)
 --> Link to internas (if you want to implement a Component)
