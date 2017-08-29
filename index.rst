@@ -15,7 +15,7 @@ and why we decided it's time for an(other) embeddable JobServer in C#.
    intro/architecture
    intro/status
 
-If you consider using Jobbr in your .NET Project please read the following capters which cover the API that is provided for you as a developer.
+If you consider using Jobbr in your .NET Project please read the following chapters which cover the API that is provided for you as a developer.
 It also contains suggestions how to deal with certain requirements. 
 
   
