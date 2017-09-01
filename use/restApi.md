@@ -53,7 +53,7 @@ builder.AddWebApi(config =>
 You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the APi, or both. The followig APIs are made for managing Jobs
 
 #### Get all Jobs
-The following endpoint retuns all registered jobs as an array:
+The following endpoint returns all registered jobs as an array:
 
     GET http://localhost:8765/api/jobs HTTP/1.1
 
@@ -84,7 +84,7 @@ and the followig example payload
 ```
 
 #### Single Job details
-Details about a single job (including triggers) can be retreived by accessing the detail route of a job
+Details about a single job (including triggers) can be retrieved by accessing the detail route of a job
 
     GET http://localhost:8765/api/jobs/1 HTTP/1.1
 
@@ -127,7 +127,7 @@ If no job exists with the given id, an error will be returned
 Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by the Rest Api.
 
 **Parameters**
-* `uniqueName`: Unique name if the job (**Required**)
+* `uniqueName`: Unique name of the job (**Required**)
 * `type` : Name of the CLR Type that should be used (**Required**)
 * `parameters`: Object that will be used as JobParameters
 
@@ -169,7 +169,7 @@ and the payload
 If there is already a job with the same UniqueName, the error `409 CONFLICT` will be returned.
 
 #### JobRuns for Job
-If you wan't to get all runs for a specifc job, you can use the subresource `runs` on every job. A job **can be identified** by its internal `id` or the user specific `uniqueName`.
+If you wan't to get all runs for a specific job, you can use the subresource `runs` on every job. A job **can be identified** by its internal `id` or the user specific `uniqueName`.
 
 **Url Parameters**
 * `id` : Internal Id of the Job (**Required**)
@@ -211,11 +211,11 @@ There are [different types](triggers.html) of triggers, each with additional att
 
 * `instant`: Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`)
 * `scheduled`: Schedules a a jobrun that starts on the specified `startDateTimeUtc`  
-* `recurring`: Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc` and can made single instance by setting `noParallelExecution` to `true`
+* `recurring`: Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc`. If `noParallelExecution` flag is set to `true`, the trigger won't trigger a new job run if one instance of that job is already running (job run is omitted).
 
 The trigger type itself is specified by the property `triggerType`.
 
-#### Get all Triggers for Job
+#### Get all Triggers for a Job
 
 Triggers are attached to a job ands therefore accessible as a subresource of a job identified by it's  internal `id` or the specified `uniqueName`.
 
@@ -351,10 +351,10 @@ The minimal example to add an **instant** trigger is shown below:
     "triggerType" : "instant"
 }
 ```    
-> `isActive` is not required and will be automatically set to `true`, because an not active instant trigger would be a joke.
+> `isActive` is not required and will be automatically set to `true`, because a non-active instant trigger would be a joke.
 
 **Optional Properties** (Type related) <br/>
-* `delayedMinutes`: Amount of time (in Minutes) in which the start shall be delayed
+* `delayedMinutes`: Amount of time (in minutes) in which the start shall be delayed
 
 ##### Example Request (Scheduled)
 The minimal example to add an **scheduled** trigger is shown below:
@@ -394,7 +394,7 @@ The minimal example to add an **recurring** trigger is shown below:
 
 ##### Successful Response
 
-A successful response will return the back the created trigger and the location to its details by a `201 Created` Response.
+A successful response will return the created trigger and the location to its details by a `201 Created` Response.
 
 **Example**
 
@@ -414,7 +414,7 @@ and the payload
 ```
 
 #### Update a Trigger
-In the rare cases you'll need to update a trigger before the job run has actually started, there is an endpoint for Patching existing triggers of a job
+In the rare cases you'll need to update a trigger before the job run has actually started, there is an endpoint for patching existing triggers of a job
 
 Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
 * `jobId` : Internal Id of the Job (**Required**)
@@ -610,7 +610,7 @@ and the file with the approriate headers will be returned
 ### Generic Endpoints
 
 #### /status
-The status endpoint is for testing purposes only. Even if does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
+The status endpoint is for testing purposes only. Even if it does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
 
     GET http://localhost:8765/api/status HTTP/1.1
 
@@ -634,7 +634,7 @@ Which will return a object that represents the current Web-API configuration.
     }
 
 #### /fail
-If you are curious if logging is setup correctly or if any reverse proxies are interfering with HTTP500 error codes, you can use this endpoint
+If you are curious if logging is setup correctly or if any reverse proxies are interfering with HTTP 500 error codes, you can use this endpoint
 
     GET /fail HTTP/1.1
 
@@ -655,7 +655,7 @@ There is also a static typed client available which you can use to interact with
 
 	Install-Package Jobbr.Client
 
-After installation, you might provide the base url where the api can be found. See example below
+After installation, you must provide the base url where the api can be found. See example below
 
 ```c#
 using Jobbr.Client;
