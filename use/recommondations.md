@@ -1,7 +1,7 @@
-# Recommondations
+# Recommendations
 where to Runnerexe, Things to know when going to prod.
 
-## Packageing with Octopus
+## Packaging with Octopus
 
 ## Rollover-Deployments
 
