@@ -42,7 +42,7 @@ Lead Software Architect @ [Zühlke](https://www.zuehlke.com/ch/de/), creator of 
 @mo85
 
 ### Peter Gfader
-@peitor
+[@peitor](https://twitter.com/peitor) cares about people and building software that makes people happy. His current job title is "Feedback Loop Shortener". 
 
 ## Zühlke Portal Solutions
 Jobbr is part of the Zühlke Portal Framework. Portal solutions connect existing data, systems and services to a collaborative ecosystem and give users a common digital home. This makes the same data accessible and usable for highly varied customer and user groups.
