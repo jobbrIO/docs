@@ -9,7 +9,7 @@ Install the NuGet `Jobbr.Server.WebAPI` to the project where you host you Jobbr-
 
 
 ### Registration
-The Library comes with an extension method for the `JobbrBuilder`. To add the Web API to a Jobbr-Server you need to register it prior start as you see below. Please note that this is not ASP.NET WebAPI when registering it to an OWIN Pipeline, allthough we're using the same principle. (In fact, we're using WebAPI internally)
+The Library comes with an extension method for the `JobbrBuilder`. To add the Web API to a Jobbr-Server you need to register it prior calling start as you see below. Please note that this is not an ASP.NET WebAPI when registering it to an OWIN Pipeline, although we're using the same principle. (In fact, we're using WebAPI internally)
 
 ```c#
 using Jobbr.Server.WebAPI;
@@ -30,7 +30,7 @@ server.Start();
 ```
 
 ### Plugin Configuration
-If you don't specify any value for `BackendAddress` the server will try to find a free port automatically and binds to all available interfaces. The endpoint is logged and usually shown in the console, but this approach is not suggested in production scenarios, see below:
+If you don't specify any value for `BackendAddress` the server will try to find a free port automatically and bind to all available interfaces. The endpoint is logged and usually shown in the console, but this approach is not recommended for production scenarios, see below:
 
 	[WARN]  (Jobbr.Server.WebAPI.Core.WebHost) There was no BackendAdress specified. Falling back to random port, which is not guaranteed to work in production scenarios
 	....
@@ -50,7 +50,7 @@ builder.AddWebApi(config =>
 ## Rest API Reference
 
 ### /jobs Endpoint
-You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the APi, or both. The followig APIs are made for managing Jobs
+You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the API, or both. The followig APIs are made for managing Jobs
 
 #### Get all Jobs
 The following endpoint returns all registered jobs as an array:
@@ -65,7 +65,7 @@ Is indicated by
     HTTP/1.1 200 OK
     Content-Type: application/json
 
-and the followig example payload
+and the following example payload
 
 ```json
 [
@@ -124,7 +124,7 @@ If no job exists with the given id, an error will be returned
 
 #### Add a new Job
 
-Besides the RepositoryBuilder in C#, there's also a posibility to create jobs by the Rest Api.
+Besides the RepositoryBuilder in C#, there's also a possibility to create jobs by the Rest API.
 
 **Parameters**
 * `uniqueName`: Unique name of the job (**Required**)
@@ -205,9 +205,9 @@ which will be replied with
 *Note:*: Only single entry shown.
 
 ### /triggers Endpoint
-Triggers are used to either add future or instant triggers to a job. The trigger is causig a job to run. Triggers are a subresource of `/jobs`
+Triggers are used to either add future or instant triggers to a job. The trigger is causing a job to run. Triggers are a subresource of `/jobs`
 
-There are [different types](triggers.html) of triggers, each with additional attributes:
+There are [different types](triggers.md) of triggers, each with additional attributes:
 
 * `instant`: Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`)
 * `scheduled`: Schedules a a jobrun that starts on the specified `startDateTimeUtc`  
@@ -217,7 +217,7 @@ The trigger type itself is specified by the property `triggerType`.
 
 #### Get all Triggers for a Job
 
-Triggers are attached to a job ands therefore accessible as a subresource of a job identified by it's  internal `id` or the specified `uniqueName`.
+Triggers are attached to a job and therefore accessible as a subresource of a job identified by its internal `id` or the specified `uniqueName`.
 
 **Url Parameters**
 * `id` : Internal Id of the Job (**Required**)
@@ -544,7 +544,7 @@ A list of matching jobruns will be returned:
 > Note that the second job has not yet completed and thus did not collect any artefacts from the Run-Directory.
 
 #### Single JobRun details
-More detailed informtion about a specific JobRun can be found on the JobRun details route.
+More detailed information about a specific JobRun can be found on the JobRun details route.
 
 GET http://localhost:8765/api/jobruns/1 HTTP/1.1
 
@@ -651,11 +651,11 @@ Will raise an unhandled exception and usually shows an error response similar to
     }
 
 ## Static Typed C#-Client
-There is also a static typed client available which you can use to interact with any Jobbr Rest Api. Install the client by using the following commands
+There is also a static typed client available which you can use to interact with any Jobbr Rest API. Install the client by using the following commands
 
 	Install-Package Jobbr.Client
 
-After installation, you must provide the base url where the api can be found. See example below
+After installation, you must provide the base url where the API can be found. See example below
 
 ```c#
 using Jobbr.Client;
@@ -672,4 +672,4 @@ var allJobs = jobbrClient.GetAllJobs();
 ## Limitations
 
 ### Authentication
-Currently there is no authentication middleware available and the API should therefore not be exposed to the public. However this feature is planned for future
+Currently there is no authentication middleware available and the API should therefore not be exposed to the public. However this feature is planned in the future

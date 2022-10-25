@@ -2,7 +2,7 @@
 Jobbr comes with a comprehensive plugin system, based on the `JobbrBuilder`. It's used by all the plugins available on https://github.com/JobbrIO and can also be leveraged to implement custom additions to the server.
 
 ## Additional Custom Functionality
-The simples way to create your own component is to immplement the `IJobbrComponent` interface and register the type to the `JobbrBuilder`. The interface is available in [Jobbr.ComponentModel.Registration](https://github.com/jobbrIO/jobbr-cm-registration). You don't need a dependency to Jobbr and thus should only have dependencies to Component Models.
+The simplest way to create your own component is to immplement the `IJobbrComponent` interface and register the type to the `JobbrBuilder`. The interface is available in [Jobbr.ComponentModel.Registration](https://github.com/jobbrIO/jobbr-cm-registration). You don't need a dependency to Jobbr and thus should only have dependencies to Component Models.
 
 **Sample component**
 ```c#
@@ -54,7 +54,7 @@ var builder = new JobbrBuilder();
 builder.AddDemoComponent();
 var server = builder.Create();
 ```
-> **Note**: Registered types and instances are registered in a **Singleton-Scope**. Calling `builder.Create()` multiple times can lead into unexpected behavior.
+> **Note**: Registered types and instances are registered in a **Singleton-Scope**. Calling `builder.Create()` multiple times can lead to unexpected behavior.
 
 #### Lifetime
 There a three important as state in the interface `IJobbrComponent`.
@@ -83,7 +83,7 @@ public class DemoComponent : IJobbrComponent
 }
 ```
 
-Alltough is possible to inject any available type, (also internal classes) you should only use those services that are defined in Component Model Packages.
+Altough it's possible to inject any available type, (also internal classes) you should only use those services that are defined in the Component Model Packages.
 
 ### Configuration
 In most cases you'll need to register a settings object to jobbr while setting up and retrieving it in your component. For a storage implementation this might be a configuration how to connect to the database.
@@ -178,11 +178,11 @@ If one validator fails (or returns false), the whole startup process is stopped 
 ## Replace Core Functionality
 Jobbr defines a couple of interfaces that belong to the core functionality. These interfaces are specified in the corresponding component model repositories and packages.
 
-* **Execution**: Contract between an executor and the Jobbr-Server, fullfilled by both the server and a component.
+* **Execution**: Contract between an executor and the Jobbr-Server, fulfilled by both the server and a component.
 * **JobStorage**: Defines interfaces for storage access
 * **ArtefactStore**: Defines interfaces to store and retrieve job related artefacts
 
-These packages are build upon the component infrastructure introduced above. The only different is that you'll need to implement specific interfaces from these packages instead of the generic `IJobbrComponent`.
+These packages are built upon the component infrastructure introduced above. The only different is that you'll need to implement specific interfaces from these packages instead of the generic `IJobbrComponent`.
 
 There are additional component models that define functionality that is available to all components provided by the server implementation
 * **Registration**: Boostrapping services, Registration, Validation, Components
