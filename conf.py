@@ -25,7 +25,7 @@
 # -- Custom Additions
 
 def setup(app):
-    app.add_stylesheet('css/custom.css')  # may also be an URL
+    app.add_css_file('css/custom.css')  # may also be an URL
 
 # -- General configuration ------------------------------------------------
 
@@ -39,6 +39,10 @@ def setup(app):
 # extensions = [
 #    'sphinx.ext.todo',
 #]
+extensions = ["myst_parser"]
+
+myst_number_code_blocks = ["csharp", "c#"]
+myst_enable_extensions = ["colon_fence"]
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
@@ -49,12 +53,6 @@ def setup(app):
 source_suffix = ['.rst', '.md']
 # source_suffix = '.rst'
 
-from recommonmark.parser import CommonMarkParser
-
-source_parsers = {
-	'.md': CommonMarkParser,
-}
-
 # The encoding of source files.
 #
 # source_encoding = 'utf-8-sig'
@@ -64,7 +62,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Jobbr .NET JobServer'
-copyright = u'2017 Zühlke Engineering AG'
+copyright = u'2022 Zühlke Engineering AG'
 author = u'Michael Schnyder, Oliver Zürcher & Contributors'
 
 # The version info for the project you're documenting, acts as replacement for

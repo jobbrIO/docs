@@ -8,9 +8,9 @@ For those that want to compare Quartz.NET, Hangfire and Jobbr to each other, her
 
 **Quartz.NET** is a mature *Scheduling Framework* which delegates the execution of business logic into classes that need to follow the exact contract defined by the Frameworks interfaces. It's a scheduler and therefore does not care about collecting the files produced by your jobs or offers a restful API to steer the jobs and their execution.
 
-**Hangfire.io** is primarly a *task offloader* built for large ASP.NET Web farms. It allows you to create background tasks triggered by some interactions on a web application. The programming model clearly focuses on one-time shots. Like Quartz.NET, Hangfire does not provide a pluggable architecture where you just can add a restful API.
+**Hangfire.io** is primarily a *task offloader* built for large ASP.NET Web farms. It allows you to create background tasks triggered by some interactions on a web application. The programming model clearly focuses on one-time shots. Like Quartz.NET, Hangfire does not provide a pluggable architecture where you just can add a restful API.
 
-**Our goal** is to provide a library that allows you to host your own JobServer where ever you want and without any compromises regarding dependencies and versions, logger-abstractions, storage implementations, extendability and stability. At the bare-minimum a Jobbr jobserver, it's execution engine and storage can be run in-memory. 
+**Our goal** is to provide a library that allows you to host your own JobServer wherever you want and without any compromises regarding dependencies and versions, logger-abstractions, storage implementations, extendability and stability. At the bare-minimum a Jobbr jobserver, it's execution engine and storage can be run in-memory. 
 
 Besides of that we've focused on clear responsibilities and unique features like
 
@@ -22,7 +22,7 @@ Besides of that we've focused on clear responsibilities and unique features like
 * Easy testable supported by in-memory stores
 * No additional dependencies or version issues for your jobs
 * DI Container ready for your jobs
-* [Extendable](../dev/extend.html) (jobstorage providers, artefact storage providers, execution etc)
+* [Extendable](../dev/extend.md) (jobstorage providers, artefact storage providers, execution etc)
 * Progress tracking via stdout (Console.WriteLine())
 
 
@@ -33,7 +33,7 @@ Have a look at the [Jobbr Demo repository](https://github.com/jobbrIO/jobbr-demo
 Jobbr was handcrafted by the following talented software engineers @ Zühlke Engineering AG, Switzerland.
 
 ### Michael Schnyder
-Lead Software Architect @ [Zühlke](https://www.zuehlke.com/ch/de/), creator of [http://www.jobbr.io](Jobbr) and .NET Trainer. Focused on .NET and modern web applications.
+Lead Software Architect @ [Zühlke](https://www.zuehlke.com/ch/de/), creator of [Jobbr](http://www.jobbr.io) and .NET Trainer. Focused on .NET and modern web applications.
 
 ### Oliver Zürcher
 @olibanjoli

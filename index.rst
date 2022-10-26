@@ -41,7 +41,7 @@ This section also convers how we release and how version bumps are made.
    :caption: Developer Documentation
 
    dev/contribution
-   dev/setup
+   dev/tooling
    dev/extend
    dev/knowledgebase
 

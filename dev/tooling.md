@@ -8,18 +8,44 @@ You'll need to install the following tools in order to compile the different pro
 ## Documentation
 The documentation is build by the readthedocs.org-Service. If you need to develop the documentation locally, install the following tools
 
-* Phyton
-* sphinx-1.6.2
-* recommonmark-0.4.0
+* [Python 3](https://docs.python-guide.org/starting/install3/win/)
+* [Sphinx](https://www.sphinx-doc.org/en/master/usage/installation.html)
+* [MyST-Parser](https://github.com/executablebooks/MyST-Parser)
+* [Read the Docs Sphinx Theme](https://github.com/readthedocs/sphinx_rtd_theme)
 
-Build the documentation with `make clean&make html` and open the index in your browser.
+Build the documentation with `make clean & make html` and open the index in your browser.
 
 **Autobuild**
 We added a autobuild option the the make.bat but you need to install shpinx-autostart in order to work. Instructions: [GaretJax/sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild)
 
 When installed, you can just issue `make livehtml` and point your browser to [http://localhost:8000](http://localhost:8000)
 
-### Installation Guide for Windows
+### Basic Install Guide for Windows
+**Note**: This guide uses [Chocolatey](https://chocolatey.org/), if you don't want to [install Chocolatey](https://chocolatey.org/install) see the extended guide below
+
+1. Install Sphinx
+
+    ```
+    choco install sphinx
+    ```
+
+2. Restart your Terminal
+
+    The Sphinx installation above also installed Python 3, which should be in your PATH once your restart the command line
+
+3. Install MyST-Parser extension
+
+    ```
+    pip install myst-parser
+    ```
+
+4. Install the ReadTheDocs Sphinx Theme
+
+    ```
+    pip install sphinx_rtd_theme
+    ```
+
+### Extended Install Guide for Windows
 1. Download and install [Phyton >= 3.5.2 from the official download location](https://www.python.org/downloads/). 
 
     > **Add Phyton to PATH**: Make sure you check the Option to add Phyton to the PATH or you'll nee to patch the `PATH` Environment variable manually.
@@ -28,7 +54,7 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
 
     ```
     C:\users\michael>py
-    Python 3.6.1 (v3.6.1:69c0db5, Mar 21 2017, 18:41:36) [MSC v.1900 64 bit (AMD64)] on win32
+    Python 3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022, 16:50:30) [MSC v.1933 64 bit (AMD64)] on win32
     Type "help", "copyright", "credits" or "license" for more information.
     ```
     > **New Console**: Keep in mind that environment variables (such as the `PATH`) will not change unless you start a new process with a console. That also applies to editors that host a console on their own.
@@ -39,7 +65,7 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
 
     ```
     C:\Users\michael>pip --version
-    pip 9.0.1 from c:\users\michael\appdata\local\programs\python\python36\lib\site-packages (python 3.6)
+    pip 22.3 from C:\Python310\lib\site-packages\pip (python 3.10)
     ```
     If there is no such command
     * Make sure you have restarted you console
@@ -63,24 +89,24 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
     snowballstemmer-1.2.1 sphinx-1.6.2 sphinxcontrib-websupport-1.0.1 urllib3-1.21.1
     ```
 
-4. Install CommonMark extension
+4. Install MyST-Parser extension
 
     This extension is required to parse Markdown-files. Install it with `pip`.
 
     ```
-    C:\Users\michael>pip install recommonmark
+    C:\Users\michael>pip install myst-parser
     ...
-    Successfully installed commonmark-0.5.4 recommonmark-0.4.0
+    Successfully installed markdown-it-py-2.1.0 mdit-py-plugins-0.3.1 mdurl-0.1.2 myst-parser-0.18.1 pyyaml-6.0 typing-extensions-4.4.0
     ```
 
 5. Install the official ReadTheDocsTheme (`sphinx_rtd_theme `)
 
-    The official ReadTheDocs Theme can also be unstalled locally in order to test the build.
+    The official ReadTheDocs Theme can also be installed locally in order to test the build.
 
     ```
     C:\Users\michael>pip install sphinx_rtd_theme
     ...
-    Successfully installed sphinx-rtd-theme-0.2.4
+    Successfully installed sphinx-rtd-theme-1.0.0
     ```    
 6. Auto-reload
 

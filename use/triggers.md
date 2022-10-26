@@ -1,7 +1,7 @@
 # Triggers
 
-Instant
+## Instant
 
-Cron
+## Cron
 
-Scheduled
+## Scheduled

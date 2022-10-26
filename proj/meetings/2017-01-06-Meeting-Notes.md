@@ -1,13 +1,13 @@
-## MN 2017-01-06 "Planning"
+# MN 2017-01-06 "Planning"
 
 **Topic**: How should we proceed with the .NET JobServer Jobbr regarding a self manageable project with can be evolved by individuals rather than the main contributors 
 
-### Participants
+## Participants
 * Oliver Zuercher (@olibanjoli)
 * Michael Schnyder (@MichaelSchnyder)
 
 -------------
-### Short Term 
+## Short Term 
 	
 * Version & Release Strategy?? (1PD)
   * Define the way how we uprelease the packages
@@ -44,7 +44,7 @@
     * include swagger defs
   * Playground on azure with swagger (2PD?)
 
-### OOS
+## OOS
 	
 * Arch (8 PD?)
   * IJobService (4PD)
@@ -53,13 +53,13 @@
 * Chattier / More Specific Storage Provider Interface to avoid Race Conditions (1PD)
 * Separation of API for RemoteExec and JobbrAdmin and group RemoteEx in separate namespace/asm (2-3PD)
 	
-### V1																													   
+## V1																													   
 	* Improve Testability (21 PD ???)
 	  - Testing the Scheduler 
 	  - Manipulate Time
 
 	  
-### Outlook / Long Term
+## Outlook / Long Term
 
 	Small Features
 	- Retention policy for artefacts & jobruns 
