@@ -1,8 +1,9 @@
-# First Start
+# Getting Started
 
 With InMemory Version
 
 ## Limitations
+
 Possible Problems and solutions / Limitations?
 
 * Persistence --> See Mssql, Raven, Filestorage

@@ -1,11 +1,61 @@
 # Tooling
+
 ## .NET Projects
+
 You'll need to install the following tools in order to compile the different projects
 
 * Microsoft .NET Framework 4.6.2 Developer Pack and Language Packs from [Microsoft Download Center](https://www.microsoft.com/en-us/download/confirmation.aspx?id=53321)
 * Microsoft Visual Studio 2015 from https://www.visualstudio.com/downloads/
 
+
+## Dashboard Frontend
+
+The Jobbr Dashboard frontend is levearging the following tools:
+
+* [Aurelia](https://aurelia.io/) as web framework
+* [Node.js](https://nodejs.org/) JavaScript runtime to build everything
+* [NPM](https://www.npmjs.com/) as package manager
+* [Aurelia CLI](https://aurelia.io/docs/cli/basics/) as Aurelia build and run tool
+* [NVM](https://github.com/nvm-sh/nvm) or rather [NVM-Windows](https://github.com/coreybutler/nvm-windows) is optional, but a great way to switch between node versions
+
+### Pre-Requisits
+
+Install Node.js v10, as is currently required by the Jobbr Dashboard.
+
+* Install nvm-windows with [the setup](https://github.com/coreybutler/nvm/releases) or with `choco install nvm`
+* *You may need to restart your terminal*
+* Run `nvm install 10`
+* Run `nvm use 10.24.1`
+* Clone the [jobbr-dashboard](https://github.com/jobbrIO/jobbr-dashboard) repository
+
+### Building
+
+* Navigate to `source/Jobbr.Dashboard.Frontend/jobbr-dashboard/` in your terminal
+* Run `npm install`
+* Run `npm install -g aurelia-cli`
+* Run `au build --env prod`
+  * Alternatively you can also choose `dev` or `stage` instead of `prod`
+
+### Running
+
+If you just want to confirm that the Dashboard loads correctly you can use:
+
+* Run `au run`
+* Open your browser at [http://localhost:1337](http://localhost:1337)
+
+If you want a fully functioning Jobbr Dashboard:
+
+* Run `au build --env prod`
+* Zip up the whole content of the generated `source/Jobbr.Dashboard.Frontend/jobbr-dashboard/dist` directory
+* Copy the zip file to the repository root
+* Rename the zip file to `dashboard-app.zip`
+* Build the `Sample.Jobbr.Server` project
+* Start the `Sample.Jobbr.Server` project
+* Open your browser at [https://localhost:1338](https://localhost:1338)
+
+
 ## Documentation
+
 The documentation is build by the readthedocs.org-Service. If you need to develop the documentation locally, install the following tools
 
 * [Python 3](https://docs.python-guide.org/starting/install3/win/)
@@ -21,6 +71,7 @@ We added a autobuild option the the make.bat but you need to install shpinx-auto
 When installed, you can just issue `make livehtml` and point your browser to [http://localhost:8000](http://localhost:8000)
 
 ### Basic Install Guide for Windows
+
 **Note**: This guide uses [Chocolatey](https://chocolatey.org/), if you don't want to [install Chocolatey](https://chocolatey.org/install) see the extended guide below
 
 1. Install Sphinx
@@ -46,6 +97,7 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
     ```
 
 ### Extended Install Guide for Windows
+
 1. Download and install [Phyton >= 3.5.2 from the official download location](https://www.python.org/downloads/). 
 
     > **Add Phyton to PATH**: Make sure you check the Option to add Phyton to the PATH or you'll nee to patch the `PATH` Environment variable manually.
@@ -117,8 +169,9 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
     ...
     Successfully installed sphinx-autobuild
     ```    
-7. Further information
 
-    * Installing Sphinx by the official spinx documentation on [http://www.sphinx-doc.org/en/stable/install.html](http://www.sphinx-doc.org/en/stable/install.html)
-    * Adding markdown support to sphinx from [http://blog.readthedocs.com/adding-markdown-support/](http://blog.readthedocs.com/adding-markdown-support/)
-    * Live reload extension from [https://github.com/GaretJax/sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild)
+## Further information
+
+* Installing Sphinx by the official spinx documentation on [http://www.sphinx-doc.org/en/stable/install.html](http://www.sphinx-doc.org/en/stable/install.html)
+* Adding markdown support to sphinx from [http://blog.readthedocs.com/adding-markdown-support/](http://blog.readthedocs.com/adding-markdown-support/)
+* Live reload extension from [https://github.com/GaretJax/sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild)

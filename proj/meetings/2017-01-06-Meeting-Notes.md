@@ -7,6 +7,7 @@
 * Michael Schnyder (@MichaelSchnyder)
 
 -------------
+
 ## Short Term 
 	
 * Version & Release Strategy?? (1PD)
@@ -53,11 +54,10 @@
 * Chattier / More Specific Storage Provider Interface to avoid Race Conditions (1PD)
 * Separation of API for RemoteExec and JobbrAdmin and group RemoteEx in separate namespace/asm (2-3PD)
 	
-## V1																													   
-	* Improve Testability (21 PD ???)
-	  - Testing the Scheduler 
-	  - Manipulate Time
-
+## V1
+* Improve Testability (21 PD ???)
+  * Testing the Scheduler 
+  * Manipulate Time
 	  
 ## Outlook / Long Term
 

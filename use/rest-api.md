@@ -1,14 +1,18 @@
 # Restful API
+
 The WebApi extension from [jobbrIO/jobbr-webapi](https://github.com/jobbrIO/jobbr-webapi) adds a Rest-style management interface to jobbr. 
 
 ## Installation
 
 Install the NuGet `Jobbr.Server.WebAPI` to the project where you host you Jobbr-Server. The extension already comes with a small webserver based on OWIN/Katana. The referenced HttpListenr will be installed by NuGet automatically.
 
-	Install-Package Jobbr.Server.WebAPI
+```powershell
+Install-Package Jobbr.Server.WebAPI
+```
 
 
 ### Registration
+
 The Library comes with an extension method for the `JobbrBuilder`. To add the Web API to a Jobbr-Server you need to register it prior calling start as you see below. Please note that this is not an ASP.NET WebAPI when registering it to an OWIN Pipeline, although we're using the same principle. (In fact, we're using WebAPI internally)
 
 ```c#
@@ -30,12 +34,15 @@ server.Start();
 ```
 
 ### Plugin Configuration
+
 If you don't specify any value for `BackendAddress` the server will try to find a free port automatically and bind to all available interfaces. The endpoint is logged and usually shown in the console, but this approach is not recommended for production scenarios, see below:
 
-	[WARN]  (Jobbr.Server.WebAPI.Core.WebHost) There was no BackendAdress specified. Falling back to random port, which is not guaranteed to work in production scenarios
-	....
-	[INFO]  (Jobbr.Server.JobbrServer) The configuration was validated and seems ok. Final configuration below:
-	JobbrWebApiConfiguration = [BackendAddress: "http://localhost:1903"]
+```
+[WARN]  (Jobbr.Server.WebAPI.Core.WebHost) There was no BackendAdress specified. Falling back to random port, which is not guaranteed to work in production scenarios
+....
+[INFO]  (Jobbr.Server.JobbrServer) The configuration was validated and seems ok. Final configuration below:
+JobbrWebApiConfiguration = [BackendAddress: "http://localhost:1903"]
+```
 
 You can override this behavior, by explicitly providing your own URI prefix, for instance `http://localhost:8765/api`. See example below:
 
@@ -45,25 +52,31 @@ builder.AddWebApi(config =>
 	config.BaseUrl = "http://localhost:8765/api";
 });
 ```
+
 **Note**: Please refer to the [MSDN Documentation for HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener(v=vs.110).aspx#Anchor_6) for the supported URI prefixes depending on your operating system and .NET Runtime version.
 
 ## Rest API Reference
 
 ### /jobs Endpoint
+
 You could either configure your Jobs by the RepositoryBuilder in C# code or create them by using the API, or both. The followig APIs are made for managing Jobs
 
 #### Get all Jobs
+
 The following endpoint returns all registered jobs as an array:
 
-    GET http://localhost:8765/api/jobs HTTP/1.1
-
+```
+GET http://localhost:8765/api/jobs HTTP/1.1
+```
 
 ##### Successful Response
 
 Is indicated by 
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 and the following example payload
 
@@ -84,17 +97,22 @@ and the following example payload
 ```
 
 #### Single Job details
+
 Details about a single job (including triggers) can be retrieved by accessing the detail route of a job
 
-    GET http://localhost:8765/api/jobs/1 HTTP/1.1
+```
+GET http://localhost:8765/api/jobs/1 HTTP/1.1
+```
 
 
 ##### Sucessful Response
 
 If the job is found, the response is indicated by
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 and the following example data is returned. Note the addition of **Triggers**
 
@@ -120,6 +138,7 @@ and the following example data is returned. Note the addition of **Triggers**
 ```
 
 ##### Error Responses
+
 If no job exists with the given id, an error will be returned
 
 #### Add a new Job
@@ -127,14 +146,17 @@ If no job exists with the given id, an error will be returned
 Besides the RepositoryBuilder in C#, there's also a possibility to create jobs by the Rest API.
 
 **Parameters**
+
 * `uniqueName`: Unique name of the job (**Required**)
 * `type` : Name of the CLR Type that should be used (**Required**)
 * `parameters`: Object that will be used as JobParameters
 
 ##### Sample Request
 
-    POST http://localhost:8765/api/jobs HTTP/1.1
-    Content-Type: application/json
+```
+POST http://localhost:8765/api/jobs HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 [
@@ -152,9 +174,11 @@ Besides the RepositoryBuilder in C#, there's also a possibility to create jobs b
 
 ##### Successful Response
 
-    201 Created 
-    Location: /api/jobs/2
-    Content-Type: application/json
+```
+201 Created 
+Location: /api/jobs/2
+Content-Type: application/json
+```
 
 and the payload
 
@@ -164,28 +188,34 @@ and the payload
     "type": "Demo.MyJobs.ProgressJob"
 }    
 ```
+
 ##### Error Responses
 
 If there is already a job with the same UniqueName, the error `409 CONFLICT` will be returned.
 
 #### JobRuns for Job
+
 If you wan't to get all runs for a specific job, you can use the subresource `runs` on every job. A job **can be identified** by its internal `id` or the user specific `uniqueName`.
 
 **Url Parameters**
+
 * `id` : Internal Id of the Job (**Required**)
 * `uniqueName`: Unique name if the job (**Required**)
 
+```
+GET http://localhost:8765/api/jobs/1/runs
 
-    GET http://localhost:8765/api/jobs/1/runs
-
-    GET http://localhost:8765/api/jobs/progressJob/runs
+GET http://localhost:8765/api/jobs/progressJob/runs
+```
 
 ##### Successful Response
 
 which will be replied with
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 ```json
 [
@@ -202,9 +232,10 @@ which will be replied with
 ]
 ```
 
-*Note:*: Only single entry shown.
+*Note:* Only single entry shown.
 
 ### /triggers Endpoint
+
 Triggers are used to either add future or instant triggers to a job. The trigger is causing a job to run. Triggers are a subresource of `/jobs`
 
 There are [different types](triggers.md) of triggers, each with additional attributes:
@@ -220,21 +251,26 @@ The trigger type itself is specified by the property `triggerType`.
 Triggers are attached to a job and therefore accessible as a subresource of a job identified by its internal `id` or the specified `uniqueName`.
 
 **Url Parameters**
+
 * `id` : Internal Id of the Job (**Required**)
 * `uniqueName`: Unique name if the job (**Required**)
 
 Jobs can be identified by both their `id` or `uniqueName`
 
-    GET http://localhost:8765/api/jobs/1/triggers
+```
+GET http://localhost:8765/api/jobs/1/triggers
 
-    GET http://localhost:8765/api/jobs/progressJob/triggers
+GET http://localhost:8765/api/jobs/progressJob/triggers
+```
 
 ##### Successful Response
 
 which will be replied with a list of all triggers for this job where some of the properties are valid for all types while others are only applicable to certain types
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 ```json
 [
@@ -285,24 +321,31 @@ which will be replied with a list of all triggers for this job where some of the
     },
 ]
 ```
+
 > Please note that the API does not expose the trigger types on the list level.
 
 #### Single Trigger details
+
 If you want to get one specific trigger only, you need to address the trigger directly as a subresource of the job.
 
 Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
+
 * `jobId` : Internal Id of the Job (**Required**)
 * `triggerId`: Id of the trigger (**Required**)
 
 
 ##### Example request
 
-    GET http://localhost:8765/api/jobs/1/triggers/3
+```
+GET http://localhost:8765/api/jobs/1/triggers/3
+```
 
 ##### Successful response
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 With payload
 
@@ -331,6 +374,7 @@ With payload
 #### Add a trigger
 
 Please note that each trigger type has a couple of properties that are common, especially
+
 * `triggerType`: Type of the trigger, see above (**Required**)
 * `isActive`: Specifies if the trigger is active (**Required**)
 * `parameters`: Object that will be used as RunParameters
@@ -341,10 +385,13 @@ Please note that each trigger type has a couple of properties that are common, e
 > Both `uniqueName` and internal job `id` is supported on this route. Examples only show identification of job by **internal id**
 
 ##### Example Request (Instant)
+
 The minimal example to add an **instant** trigger is shown below:
 
-    POST http://localhost:8765/api/jobs/1/triggers HTTP/1.1
-    Content-Type: application/json
+```
+POST http://localhost:8765/api/jobs/1/triggers HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 { 
@@ -353,14 +400,18 @@ The minimal example to add an **instant** trigger is shown below:
 ```    
 > `isActive` is not required and will be automatically set to `true`, because a non-active instant trigger would be a joke.
 
-**Optional Properties** (Type related) <br/>
+**Optional Properties** (Type related)
+
 * `delayedMinutes`: Amount of time (in minutes) in which the start shall be delayed
 
 ##### Example Request (Scheduled)
+
 The minimal example to add an **scheduled** trigger is shown below:
 
-    POST http://localhost:8765/api/jobs/1/truggers HTTP/1.1
-    Content-Type: application/json
+```
+POST http://localhost:8765/api/jobs/1/truggers HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 {
@@ -370,14 +421,17 @@ The minimal example to add an **scheduled** trigger is shown below:
 }
 ```    
 
-**Optional Properties** (Type related) <br/>
+**Optional Properties** (Type related)  
 *none*
 
 ##### Example Request (Recurring)
+
 The minimal example to add an **recurring** trigger is shown below:
 
-    POST http://localhost:8765/api/jobs/1/triggers HTTP/1.1
-    Content-Type: application/json
+```
+POST http://localhost:8765/api/jobs/1/triggers HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 {
@@ -387,7 +441,8 @@ The minimal example to add an **recurring** trigger is shown below:
 }
 ```    
 
-**Optional Properties** (Type related) <br/>
+**Optional Properties** (Type related)
+
 * `startDateTimeUtc`: Start of time range when trigger is valid
 * `endDateTimeUtc`: End of time range when trigger is valid
 * `noParallelExecution`: Indicates if this trigger is allowed to cause a new job while a job caused by the same trigger is still running.
@@ -398,9 +453,11 @@ A successful response will return the created trigger and the location to its de
 
 **Example**
 
-    201 Created 
-    Location: /api/jobs/1/triggers/4
-    Content-Type: application/json
+```
+201 Created 
+Location: /api/jobs/1/triggers/4
+Content-Type: application/json
+```
 
 and the payload
 
@@ -414,26 +471,33 @@ and the payload
 ```
 
 #### Update a Trigger
+
 In the rare cases you'll need to update a trigger before the job run has actually started, there is an endpoint for patching existing triggers of a job
 
 Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
+
 * `jobId` : Internal Id of the Job (**Required**)
 * `triggerId`: Id of the trigger (**Required**)
 
 Only the following changes are possible
+
 * Change `isActive` from `true` to `false` or vice-versa
 * Adjust Cron-Definition of a Recurring-Trigger
 * Change `StarteDateUtc` to any value in the future of a ScheduledTrigger
 
 Each request needs to contain the following properties
+
 * `isActive`: Specifies if the trigger is active (**Required**)
 * `triggerType`: Type of the trigger, see above (**Required for non-instant trigger types**)
 
 ##### Sample Request (Instant)
+
 To disable the trigger with id 1, the following call needs to be executed:
 
-    PATCH http://localhost:8765/api/jobs/1/triggers/1 HTTP/1.1
-    Content-Type: application/json
+```
+PATCH http://localhost:8765/api/jobs/1/triggers/1 HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 {
@@ -442,10 +506,13 @@ To disable the trigger with id 1, the following call needs to be executed:
 ``` 
 
 ##### Sample Request (Scheduled)
+
 To update the scheduled start of a trigger to anything else in future, the following call is required:
 
-    PATCH http://localhost:8765/api/jobs/1/triggers/2 HTTP/1.1
-    Content-Type: application/json
+```
+PATCH http://localhost:8765/api/jobs/1/triggers/2 HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 {
@@ -456,10 +523,13 @@ To update the scheduled start of a trigger to anything else in future, the follo
 ``` 
 
 ##### Sample Request (Recurring)
+
 To update the scheduled start of a trigger to anything else in future, the following call is required:
 
-    PATCH http://localhost:8765/api/jobs/1/triggers/3 HTTP/1.1
-    Content-Type: application/json
+```
+PATCH http://localhost:8765/api/jobs/1/triggers/3 HTTP/1.1
+Content-Type: application/json
+```
 
 ```json
 {
@@ -470,10 +540,13 @@ To update the scheduled start of a trigger to anything else in future, the follo
 ``` 
 
 ### /jobruns Endpoint
+
 Jobruns are a result of a job and a trigger that has caused the jobrun itself. JobRuns are read-only.
 
 #### Query JobRuns
+
 There is no possibility to get all jobruns, but there are query options that allow querying jobruns by
+
 * `userId`: Example: `http://localhost:8765/api/jobruns?userId=user123`
 * `userDisplayName`: Example: `http://localhost:8765/api/jobruns?userDisplayName=Testuser`
 * `jobId` and `triggerId`: Example: `http://localhost:8765/api/jobruns?jobId=3&triggerId=4`
@@ -482,8 +555,10 @@ There is no possibility to get all jobruns, but there are query options that all
 
 A list of matching jobruns will be returned:
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 ```json
 [
@@ -544,17 +619,21 @@ A list of matching jobruns will be returned:
 > Note that the second job has not yet completed and thus did not collect any artefacts from the Run-Directory.
 
 #### Single JobRun details
+
 More detailed information about a specific JobRun can be found on the JobRun details route.
 
+```
 GET http://localhost:8765/api/jobruns/1 HTTP/1.1
-
+```
 
 ##### Sucessful Response
 
 If the jobrun is found, the response is indicated by
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 and the following example data is returned. Note the addition of **Triggers**
 
@@ -594,66 +673,89 @@ and the following example data is returned. Note the addition of **Triggers**
 ```
 
 #### Download Artefact 
+
 Artefacts are listed as object array in the property `artefacts`. To download a specific artefact, a `GET`-Request is required.
 
-    http://localhost:8765/api/jobruns/1/artefact/report.log HTTP/1.1
+```
+http://localhost:8765/api/jobruns/1/artefact/report.log HTTP/1.1
+```
 
 and the file with the approriate headers will be returned
 
-    HTTP/1.1 200 OK
-    Content-Type: text/plain
-    Content-Lenght: 1258
+```
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Lenght: 1258
 
-    ....
+...
+```
 
 
 ### Generic Endpoints
 
 #### /status
+
 The status endpoint is for testing purposes only. Even if it does not perform health checking it can be used to determine the HTTP bindings and general availability of the Http-Endpoint.
 
-    GET http://localhost:8765/api/status HTTP/1.1
+```
+GET http://localhost:8765/api/status HTTP/1.1
+```
 
 Does usually just return:
 
-    HTTP/1.1 200 OK
+```
+HTTP/1.1 200 OK
 
-    "Fine"
+"Fine"
+```
 
 #### /configuration
+
 If you need to check the current configuration, use the `/configuration` endpoint.
 
-    GET http://localhost:8765/api/status
+```
+GET http://localhost:8765/api/status
+```
 
 Which will return a object that represents the current Web-API configuration.
 
-    HTTP/1.1 200 OK 
+```
+HTTP/1.1 200 OK 
 
-    {
-        "backendAddress": "http://localhost:8765/api"
-    }
+{
+    "backendAddress": "http://localhost:8765/api"
+}
+```
 
 #### /fail
+
 If you are curious if logging is setup correctly or if any reverse proxies are interfering with HTTP 500 error codes, you can use this endpoint
 
-    GET /fail HTTP/1.1
+```
+GET /fail HTTP/1.1
+```
 
 Will raise an unhandled exception and usually shows an error response similar to 
 
-    HTTP/1.1 500 Internal Server Error
+```
+HTTP/1.1 500 Internal Server Error
 
-    {
+{
     "message": "An error has occurred.",
     "exceptionMessage": "This has failed!",
     "exceptionType": "System.Exception",
     "stackTrace": "   at Jobbr.Server.WebAPI.Core.Controller.DefaultController.Fail() in DefaultController.cs:line 42
     ...
-    }
+}
+```
 
 ## Static Typed C#-Client
+
 There is also a static typed client available which you can use to interact with any Jobbr Rest API. Install the client by using the following commands
 
-	Install-Package Jobbr.Client
+```powershell
+Install-Package Jobbr.Client
+```
 
 After installation, you must provide the base url where the API can be found. See example below
 
@@ -666,10 +768,10 @@ using Jobbr.Server.WebAPI.Model;
 var jobbrClient = new JobbrClient("http://localhost:8765/api");
 
 var allJobs = jobbrClient.GetAllJobs();
-
 ```
 
 ## Limitations
 
 ### Authentication
+
 Currently there is no authentication middleware available and the API should therefore not be exposed to the public. However this feature is planned in the future

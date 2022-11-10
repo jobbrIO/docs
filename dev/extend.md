@@ -1,7 +1,9 @@
 # Extend Jobbr
+
 Jobbr comes with a comprehensive plugin system, based on the `JobbrBuilder`. It's used by all the plugins available on https://github.com/JobbrIO and can also be leveraged to implement custom additions to the server.
 
 ## Additional Custom Functionality
+
 The simplest way to create your own component is to immplement the `IJobbrComponent` interface and register the type to the `JobbrBuilder`. The interface is available in [Jobbr.ComponentModel.Registration](https://github.com/jobbrIO/jobbr-cm-registration). You don't need a dependency to Jobbr and thus should only have dependencies to Component Models.
 
 **Sample component**
@@ -23,6 +25,7 @@ public class DemoComponent : IJobbrComponent
 ```
 
 ### Registration ###
+
 To register the component, you'll need to register the type to the Jobbr internal DI, which is available through the JobbrBuilder.
 
 ```c#
@@ -54,9 +57,11 @@ var builder = new JobbrBuilder();
 builder.AddDemoComponent();
 var server = builder.Create();
 ```
+
 > **Note**: Registered types and instances are registered in a **Singleton-Scope**. Calling `builder.Create()` multiple times can lead to unexpected behavior.
 
 #### Lifetime
+
 There a three important as state in the interface `IJobbrComponent`.
 
 * **Activation**: The component is created when `builder.Create()` is called
@@ -65,6 +70,7 @@ There a three important as state in the interface `IJobbrComponent`.
 * **Dispose()**: Called when the instance of JobbrServer gets Disposed
 
 ### Dependencies
+
 If you like to base on existing services from component implementations or own dependencies you need to specify those in the constructor of your component. 
 
 **Sample**
@@ -86,6 +92,7 @@ public class DemoComponent : IJobbrComponent
 Altough it's possible to inject any available type, (also internal classes) you should only use those services that are defined in the Component Model Packages.
 
 ### Configuration
+
 In most cases you'll need to register a settings object to jobbr while setting up and retrieving it in your component. For a storage implementation this might be a configuration how to connect to the database.
 
 You'll need a settings class like the one below
@@ -148,6 +155,7 @@ builder.AddDemoComponent(c => {
 ```
 
 #### Configuration Validators
+
 You might wan't to validate the configuration that is passed to your Component before the component is actually activated. This can be done by registering Validators for a given configuration type.
 
 The interface `IConfugurationValidator` from `Jobbr.ComponentModel.Registration`.
@@ -162,6 +170,7 @@ public interface IConfigurationValidator
 ``` 
 
 **Registration** for the imaginary implementation named `ConfigurationValiator`.
+
 ```c#
 // As type
 builder.Register<IConfigurationValidator>(typeof(ConfigurationValidator));
@@ -170,12 +179,14 @@ builder.Register<IConfigurationValidator>(typeof(ConfigurationValidator));
 builder.Add<IConfigurationValidator>(new ConfigurationValidato()));
 
 ```
+
 Your validator is called for each instance of the specified `ConfigurationType`. It's expected that you either return false in the validation process or throw an exception.
 
 If one validator fails (or returns false), the whole startup process is stopped and the server is in an unrecoverable Error-State.
 
 
 ## Replace Core Functionality
+
 Jobbr defines a couple of interfaces that belong to the core functionality. These interfaces are specified in the corresponding component model repositories and packages.
 
 * **Execution**: Contract between an executor and the Jobbr-Server, fulfilled by both the server and a component.
