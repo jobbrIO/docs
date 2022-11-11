@@ -64,10 +64,10 @@ var server = builder.Create();
 
 There a three important as state in the interface `IJobbrComponent`.
 
-* **Activation**: The component is created when `builder.Create()` is called
-* **Start()**: Called when the Jobbr Server is started
-* **Stop()**: Called when the Jobbr Server gets started
-* **Dispose()**: Called when the instance of JobbrServer gets Disposed
+- **Activation**: The component is created when `builder.Create()` is called
+- **Start()**: Called when the Jobbr Server is started
+- **Stop()**: Called when the Jobbr Server gets started
+- **Dispose()**: Called when the instance of JobbrServer gets Disposed
 
 ### Dependencies
 
@@ -189,14 +189,14 @@ If one validator fails (or returns false), the whole startup process is stopped 
 
 Jobbr defines a couple of interfaces that belong to the core functionality. These interfaces are specified in the corresponding component model repositories and packages.
 
-* **Execution**: Contract between an executor and the Jobbr-Server, fulfilled by both the server and a component.
-* **JobStorage**: Defines interfaces for storage access
-* **ArtefactStore**: Defines interfaces to store and retrieve job related artefacts
+- **Execution**: Contract between an executor and the Jobbr-Server, fulfilled by both the server and a component.
+- **JobStorage**: Defines interfaces for storage access
+- **ArtefactStore**: Defines interfaces to store and retrieve job related artefacts
 
 These packages are built upon the component infrastructure introduced above. The only different is that you'll need to implement specific interfaces from these packages instead of the generic `IJobbrComponent`.
 
 There are additional component models that define functionality that is available to all components provided by the server implementation
-* **Registration**: Boostrapping services, Registration, Validation, Components
-* **Management**: Manage the server, Query Jobs, etc.
+- **Registration**: Boostrapping services, Registration, Validation, Components
+- **Management**: Manage the server, Query Jobs, etc.
 
 Plase also see [all Component Models on GitHub](https://github.com/jobbrIO?q=cm)

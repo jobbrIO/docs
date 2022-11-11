@@ -12,13 +12,13 @@ For those that want to compare Quartz.NET, Hangfire and Jobbr to each other, her
 
 Besides of that we've focused on clear responsibilities and unique features like
 
-* Embeddable in your own C# application (job server and executor)
-* Isolation of Jobs on process-level
-* REST API and typed client to manage and trigger Jobs and watch the execution state
-* Persists created files from jobruns in an artefact store
-* Supports CRON expressions for recurring triggers
-* Easily testable, supported by in-memory stores
-* No additional dependencies or version issues for your jobs
-* DI Container ready for your jobs
-* [Extendable](../dev/extend.md) (jobstorage providers, artefact storage providers, execution etc)
-* Progress tracking via stdout (Console.WriteLine())
+- Embeddable in your own C# application (job server and executor)
+- Isolation of Jobs on process-level
+- REST API and typed client to manage and trigger Jobs and watch the execution state
+- Persists created files from jobruns in an artefact store
+- Supports CRON expressions for recurring triggers
+- Easily testable, supported by in-memory stores
+- No additional dependencies or version issues for your jobs
+- DI Container ready for your jobs
+- [Extendable](../dev/extend.md) (jobstorage providers, artefact storage providers, execution etc)
+- Progress tracking via stdout (Console.WriteLine())

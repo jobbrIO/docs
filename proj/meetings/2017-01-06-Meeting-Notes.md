@@ -68,18 +68,18 @@
 	
 	 
 	Extended Features 
-	* Let the JobRunner run as specific user account
+	- Let the JobRunner run as specific user account
 
 	Upcoming
-	* Client API Authentication
-	* Remote Execution Authentication
-	* Web Dashboard as Package (seperate Package that consumes the JobbrService[s])
+	- Client API Authentication
+	- Remote Execution Authentication
+	- Web Dashboard as Package (seperate Package that consumes the JobbrService[s])
 	 - Same Host
 	 - Separate Host 
 	 - Current JobRuns / Start 
 	 - Crud Edit Triggers
 	
-	* Business Result vs. "Technical Logging"
+	- Business Result vs. "Technical Logging"
 	  - Businesslog vs. Runtime Technical log 
 	  - Concrete result of job / JobResponse
 		- Service Message to set the business state
@@ -88,26 +88,25 @@
 			- serialized to the directory and available in api
 		- Client awaits result of jobrun 
 	  
-	* Long running Job / keep Job running 
+	- Long running Job / keep Job running 
 
-	* Run Jobs on remote machine
+	- Run Jobs on remote machine
 	  - Similar to scale out with multiple servers with runners 
 	
-	* Performance
+	- Performance
 	  - It takes long to find concrete type by the string provided
 	  
 	
-	* Scaling
+	- Scaling
 	  - Multiple Servers with Runners with one JobServer 
 	  - Multiple JobServer with multiple local runners each
 	  - Multiple All
 	 
-	* HA
+	- HA
 	  - Work with messages against DB Server 
 	  
 	  
 	  
 	Long Term
-	* Queuing
-	* Highproio Queue / vs. Low Prio Queue 
-	 
+	- Queuing
+	- Highproio Queue / vs. Low Prio Queue 

@@ -3,14 +3,14 @@
 **Topic**: How should we split the different assemblies and packages. Is it required to release features independent from others etc
 
 ## Participants
-* Oliver Zuercher (@olibanjoli)
-* Michael Schnyder (@MichaelSchnyder)
+- Oliver Zuercher (@olibanjoli)
+- Michael Schnyder (@MichaelSchnyder)
 
 ## Open Questions
-* Shall we go in the direction of having a glue-package for each abstraction type (storage, exection, management)
-* If Glue: Is there also a model-repository that covers the essential datatypes or is it backed in each of the abstractions and mapped from the core model owned by the JobbrServer?
-* If Glue: Releaseplan and management of the glue-libraries 
-* If !Glue: One Repo and Version fits it all?
+- Shall we go in the direction of having a glue-package for each abstraction type (storage, exection, management)
+- If Glue: Is there also a model-repository that covers the essential datatypes or is it backed in each of the abstractions and mapped from the core model owned by the JobbrServer?
+- If Glue: Releaseplan and management of the glue-libraries 
+- If !Glue: One Repo and Version fits it all?
 
 ## Decision
 Based on the current information and advantages and drawbacks the decision was made to introduce abstraction packages that contain the interface specifications for each extension possibility. The Isolation overweighted the disadwantage of having additional NuGet-Packges for the sole abstraction purpose.

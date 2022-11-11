@@ -2,8 +2,8 @@
 
 There are two different categories of information that need to be stored
 
-* **JobStorage**: Job Information, Triggers, and Runs
-* **Artefacts**: Files created during Run by the job
+- **JobStorage**: Job Information, Triggers, and Runs
+- **Artefacts**: Files created during Run by the job
 
 :::{note}
 You can combine different technologies to persist job related information (and triggers, runs, etc.) and Artefacts created by the jobruns.

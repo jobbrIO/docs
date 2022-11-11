@@ -147,9 +147,9 @@ Besides the RepositoryBuilder in C#, there's also a possibility to create jobs b
 
 **Parameters**
 
-* `uniqueName`: Unique name of the job (**Required**)
-* `type` : Name of the CLR Type that should be used (**Required**)
-* `parameters`: Object that will be used as JobParameters
+- `uniqueName`: Unique name of the job (**Required**)
+- `type` : Name of the CLR Type that should be used (**Required**)
+- `parameters`: Object that will be used as JobParameters
 
 ##### Sample Request
 
@@ -199,8 +199,8 @@ If you wan't to get all runs for a specific job, you can use the subresource `ru
 
 **Url Parameters**
 
-* `id` : Internal Id of the Job (**Required**)
-* `uniqueName`: Unique name if the job (**Required**)
+- `id` : Internal Id of the Job (**Required**)
+- `uniqueName`: Unique name if the job (**Required**)
 
 ```
 GET http://localhost:8765/api/jobs/1/runs
@@ -240,9 +240,9 @@ Triggers are used to either add future or instant triggers to a job. The trigger
 
 There are [different types](triggers.md) of triggers, each with additional attributes:
 
-* `instant`: Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`)
-* `scheduled`: Schedules a a jobrun that starts on the specified `startDateTimeUtc`  
-* `recurring`: Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc`. If `noParallelExecution` flag is set to `true`, the trigger won't trigger a new job run if one instance of that job is already running (job run is omitted).
+- `instant`: Schedules a job run that runs immediately (can be delayed by the property `delayedMinutes`)
+- `scheduled`: Schedules a a jobrun that starts on the specified `startDateTimeUtc`  
+- `recurring`: Recurring trigger with a cron definition in `definition` which is valid between `startDateTimeUtc` and `endDateTimeUtc`. If `noParallelExecution` flag is set to `true`, the trigger won't trigger a new job run if one instance of that job is already running (job run is omitted).
 
 The trigger type itself is specified by the property `triggerType`.
 
@@ -252,8 +252,8 @@ Triggers are attached to a job and therefore accessible as a subresource of a jo
 
 **Url Parameters**
 
-* `id` : Internal Id of the Job (**Required**)
-* `uniqueName`: Unique name if the job (**Required**)
+- `id` : Internal Id of the Job (**Required**)
+- `uniqueName`: Unique name if the job (**Required**)
 
 Jobs can be identified by both their `id` or `uniqueName`
 
@@ -330,8 +330,8 @@ If you want to get one specific trigger only, you need to address the trigger di
 
 Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
 
-* `jobId` : Internal Id of the Job (**Required**)
-* `triggerId`: Id of the trigger (**Required**)
+- `jobId` : Internal Id of the Job (**Required**)
+- `triggerId`: Id of the trigger (**Required**)
 
 
 ##### Example request
@@ -375,12 +375,12 @@ With payload
 
 Please note that each trigger type has a couple of properties that are common, especially
 
-* `triggerType`: Type of the trigger, see above (**Required**)
-* `isActive`: Specifies if the trigger is active (**Required**)
-* `parameters`: Object that will be used as RunParameters
-* `comment`: Any arbitrary comment or additional information for this trigger
-* `userId`: The principal under which the job should be started
-* `userDisplayName`: Any arbitrary that could be the name of the user that triggered the job
+- `triggerType`: Type of the trigger, see above (**Required**)
+- `isActive`: Specifies if the trigger is active (**Required**)
+- `parameters`: Object that will be used as RunParameters
+- `comment`: Any arbitrary comment or additional information for this trigger
+- `userId`: The principal under which the job should be started
+- `userDisplayName`: Any arbitrary that could be the name of the user that triggered the job
 
 > Both `uniqueName` and internal job `id` is supported on this route. Examples only show identification of job by **internal id**
 
@@ -402,7 +402,7 @@ Content-Type: application/json
 
 **Optional Properties** (Type related)
 
-* `delayedMinutes`: Amount of time (in minutes) in which the start shall be delayed
+- `delayedMinutes`: Amount of time (in minutes) in which the start shall be delayed
 
 ##### Example Request (Scheduled)
 
@@ -443,9 +443,9 @@ Content-Type: application/json
 
 **Optional Properties** (Type related)
 
-* `startDateTimeUtc`: Start of time range when trigger is valid
-* `endDateTimeUtc`: End of time range when trigger is valid
-* `noParallelExecution`: Indicates if this trigger is allowed to cause a new job while a job caused by the same trigger is still running.
+- `startDateTimeUtc`: Start of time range when trigger is valid
+- `endDateTimeUtc`: End of time range when trigger is valid
+- `noParallelExecution`: Indicates if this trigger is allowed to cause a new job while a job caused by the same trigger is still running.
 
 ##### Successful Response
 
@@ -476,19 +476,19 @@ In the rare cases you'll need to update a trigger before the job run has actuall
 
 Schema: `http://localhost:8765/api/jobs/[jobId]/triggers/[triggerId]` where:
 
-* `jobId` : Internal Id of the Job (**Required**)
-* `triggerId`: Id of the trigger (**Required**)
+- `jobId` : Internal Id of the Job (**Required**)
+- `triggerId`: Id of the trigger (**Required**)
 
 Only the following changes are possible
 
-* Change `isActive` from `true` to `false` or vice-versa
-* Adjust Cron-Definition of a Recurring-Trigger
-* Change `StarteDateUtc` to any value in the future of a ScheduledTrigger
+- Change `isActive` from `true` to `false` or vice-versa
+- Adjust Cron-Definition of a Recurring-Trigger
+- Change `StarteDateUtc` to any value in the future of a ScheduledTrigger
 
 Each request needs to contain the following properties
 
-* `isActive`: Specifies if the trigger is active (**Required**)
-* `triggerType`: Type of the trigger, see above (**Required for non-instant trigger types**)
+- `isActive`: Specifies if the trigger is active (**Required**)
+- `triggerType`: Type of the trigger, see above (**Required for non-instant trigger types**)
 
 ##### Sample Request (Instant)
 
@@ -547,9 +547,9 @@ Jobruns are a result of a job and a trigger that has caused the jobrun itself. J
 
 There is no possibility to get all jobruns, but there are query options that allow querying jobruns by
 
-* `userId`: Example: `http://localhost:8765/api/jobruns?userId=user123`
-* `userDisplayName`: Example: `http://localhost:8765/api/jobruns?userDisplayName=Testuser`
-* `jobId` and `triggerId`: Example: `http://localhost:8765/api/jobruns?jobId=3&triggerId=4`
+- `userId`: Example: `http://localhost:8765/api/jobruns?userId=user123`
+- `userDisplayName`: Example: `http://localhost:8765/api/jobruns?userDisplayName=Testuser`
+- `jobId` and `triggerId`: Example: `http://localhost:8765/api/jobruns?jobId=3&triggerId=4`
 
 ##### Successful Response
 

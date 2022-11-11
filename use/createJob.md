@@ -1,6 +1,6 @@
 # Job
 
-* Run Method
-* Progress
-* Output files
-* TempDir
+- Run Method
+- Progress
+- Output files
+- TempDir

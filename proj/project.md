@@ -4,24 +4,24 @@
 
 The core team consist of
 
-* Michael Schnyder
-* Oliver Zürcher
+- Michael Schnyder
+- Oliver Zürcher
 
 ## Source Code
 
 This is the main repository for the Jobbr project and contains the core functionality of a JobServer itself. These are
 
-* A Scheduler
-* JobRepository Builder
-* Abstractions for Storage Provides
-* Abstractions for Job Execution
-* Interfaces to register additional components
+- A Scheduler
+- JobRepository Builder
+- Abstractions for Storage Provides
+- Abstractions for Job Execution
+- Interfaces to register additional components
 
 Please see all the other repositories for additional features like
 
-* Storage
-* Execution
-* Web Management
+- Storage
+- Execution
+- Web Management
 
 These projects follow their own release cycle and might also publish packages on NuGet. Hereby a short overview of current related projects
 
