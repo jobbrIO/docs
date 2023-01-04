@@ -46,7 +46,7 @@ If you just want to confirm that the Dashboard loads correctly you can use:
 If you want a fully functioning Jobbr Dashboard:
 
 - Run `au build --env prod`
-- Zip up the whole content of the generated `source/Jobbr.Dashboard.Frontend/jobbr-dashboard/dist` directory
+- Zip up the whole content of the generated `source/Jobbr.Dashboard.Frontend/jobbr-dashboard/dist` directory excluding any subdirectories (e.g. img)
 - Copy the zip file to the repository root
 - Rename the zip file to `dashboard-app.zip`
 - Build the `Sample.Jobbr.Server` project
