@@ -62,7 +62,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Jobbr .NET JobServer'
-copyright = u'2022 Zühlke Engineering AG'
+copyright = u'2024 Zühlke Engineering AG'
 author = u'Michael Schnyder, Oliver Zürcher & Contributors'
 
 # The version info for the project you're documenting, acts as replacement for
