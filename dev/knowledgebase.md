@@ -1,4 +1,4 @@
-# Knowledgebase
+# Knowledge Base
 
 ## Using reStructuredText
 
@@ -6,7 +6,7 @@ See http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
 ## Add File to Git History
 
-Lets assume we would like to add a file after the first commit of the repo, which already has a comple of commits
+Lets assume we would like to add a file after the first commit of the repo, which already has a couple of commits
 
     git log
 
@@ -30,11 +30,11 @@ Checkout the develop branch first
 
     git checkout develop
 
-Then rebase to the new commit, which might be master now. The `-commiter-date-is-author-data` keeps the commiterdate and author date in sync and does not introduce new timestamps
+Then rebase to the new commit, which might be master now. The `-committer-date-is-author-data` keeps the committer date and author date in sync and does not introduce new timestamps
 
     git rebase master --committer-date-is-author-date
 
-The istory is noew rewritten, but an commiter-author has been introduces since the commits have been rewritten. The following command resets all these fields to the corresponding author-values
+The history is now rewritten, but an committer-author has been introduces since the commits have been rewritten. The following command resets all these fields to the corresponding author-values
 
     git filter-branch --commit-filter 'export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"; export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"; export GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"; git commit-tree "$@"'
 

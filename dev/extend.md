@@ -4,7 +4,7 @@ Jobbr comes with a comprehensive plugin system, based on the `JobbrBuilder`. It'
 
 ## Additional Custom Functionality
 
-The simplest way to create your own component is to immplement the `IJobbrComponent` interface and register the type to the `JobbrBuilder`. The interface is available in [Jobbr.ComponentModel.Registration](https://github.com/jobbrIO/jobbr-cm-registration). You don't need a dependency to Jobbr and thus should only have dependencies to Component Models.
+The simplest way to create your own component is to implement the `IJobbrComponent` interface and register the type to the `JobbrBuilder`. The interface is available in [Jobbr.ComponentModel.Registration](https://github.com/jobbrIO/jobbr-cm-registration). You don't need a dependency to Jobbr and thus should only have dependencies to Component Models.
 
 **Sample component**
 ```c#
@@ -89,11 +89,11 @@ public class DemoComponent : IJobbrComponent
 }
 ```
 
-Altough it's possible to inject any available type, (also internal classes) you should only use those services that are defined in the Component Model Packages.
+Although it's possible to inject any available type, (also internal classes) you should only use those services that are defined in the Component Model Packages.
 
 ### Configuration
 
-In most cases you'll need to register a settings object to jobbr while setting up and retrieving it in your component. For a storage implementation this might be a configuration how to connect to the database.
+In most cases you'll need to register a settings object to Jobbr while setting up and retrieving it in your component. For a storage implementation this might be a configuration how to connect to the database.
 
 You'll need a settings class like the one below
 
@@ -105,7 +105,7 @@ public class DemoComponentConfiguration {
 }
 ```
 
-An instance of this class needs to be registed to the builder and the DemoComponent's Constructor needs to be adjusted so that this specific instance is passed to the constructor.
+An instance of this class needs to be registered to the builder and the DemoComponent's Constructor needs to be adjusted so that this specific instance is passed to the constructor.
 
 **Registering an instance**
 ```c#
@@ -158,7 +158,7 @@ builder.AddDemoComponent(c => {
 
 You might wan't to validate the configuration that is passed to your Component before the component is actually activated. This can be done by registering Validators for a given configuration type.
 
-The interface `IConfugurationValidator` from `Jobbr.ComponentModel.Registration`.
+The interface `IConfigurationValidator` from `Jobbr.ComponentModel.Registration`.
 
 ```c#
 public interface IConfigurationValidator
@@ -169,14 +169,14 @@ public interface IConfigurationValidator
 }
 ``` 
 
-**Registration** for the imaginary implementation named `ConfigurationValiator`.
+**Registration** for the imaginary implementation named `ConfigurationValidator`.
 
 ```c#
 // As type
 builder.Register<IConfigurationValidator>(typeof(ConfigurationValidator));
 
 // Or as instance
-builder.Add<IConfigurationValidator>(new ConfigurationValidato()));
+builder.Add<IConfigurationValidator>(new ConfigurationValidator()));
 
 ```
 
@@ -191,12 +191,12 @@ Jobbr defines a couple of interfaces that belong to the core functionality. Thes
 
 - **Execution**: Contract between an executor and the Jobbr-Server, fulfilled by both the server and a component.
 - **JobStorage**: Defines interfaces for storage access
-- **ArtefactStore**: Defines interfaces to store and retrieve job related artefacts
+- **ArtefactStore**: Defines interfaces to store and retrieve job related artifacts
 
 These packages are built upon the component infrastructure introduced above. The only different is that you'll need to implement specific interfaces from these packages instead of the generic `IJobbrComponent`.
 
 There are additional component models that define functionality that is available to all components provided by the server implementation
-- **Registration**: Boostrapping services, Registration, Validation, Components
+- **Registration**: Bootstrapping services, Registration, Validation, Components
 - **Management**: Manage the server, Query Jobs, etc.
 
 Plase also see [all Component Models on GitHub](https://github.com/jobbrIO?q=cm)

@@ -10,7 +10,7 @@ You'll need to install the following tools in order to compile the different pro
 
 ## Dashboard Frontend
 
-The Jobbr Dashboard frontend is levearging the following tools:
+The Jobbr Dashboard frontend is leveraging the following tools:
 
 - [Aurelia](https://aurelia.io/) as web framework
 - [Node.js](https://nodejs.org/) JavaScript runtime to build everything
@@ -18,7 +18,7 @@ The Jobbr Dashboard frontend is levearging the following tools:
 - [Aurelia CLI](https://aurelia.io/docs/cli/basics/) as Aurelia build and run tool
 - [NVM](https://github.com/nvm-sh/nvm) or rather [NVM-Windows](https://github.com/coreybutler/nvm-windows) is optional, but a great way to switch between node versions
 
-### Pre-Requisits
+### Pre-Requisites
 
 Install Node.js v10, as is currently required by the Jobbr Dashboard.
 
@@ -98,9 +98,9 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
 
 ### Extended Install Guide for Windows
 
-1. Download and install [Phyton >= 3.5.2 from the official download location](https://www.python.org/downloads/). 
+1. Download and install [Python >= 3.5.2 from the official download location](https://www.python.org/downloads/). 
 
-    > **Add Phyton to PATH**: Make sure you check the Option to add Phyton to the PATH or you'll nee to patch the `PATH` Environment variable manually.
+    > **Add Python to PATH**: Make sure you check the Option to add Python to the PATH or you'll nee to patch the `PATH` Environment variable manually.
 
     Check your installation by executing `py` in the console. You should see something like this and you'll be able to exit by pressing `Ctrl-Z` and hit enter. 
 
@@ -113,7 +113,7 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
 
 2. Check PIP (The Python Package manager)
     
-    The Pagage manager should be installed, just check with the command `pip --version`:
+    The package manager should be installed, just check with the command `pip --version`:
 
     ```
     C:\Users\michael>pip --version
@@ -125,7 +125,7 @@ When installed, you can just issue `make livehtml` and point your browser to [ht
 
 3. Install Sphinx
 
-    Sphinx is the document rendering engine that is also used to generate jobbr.readthedocs.io. The following command will install Sphinx and all other related packages in your Phyton installation.
+    Sphinx is the document rendering engine that is also used to generate jobbr.readthedocs.io. The following command will install Sphinx and all other related packages in your Python installation.
 
     ```
     C:\Users\michael>pip install sphinx
