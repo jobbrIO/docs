@@ -237,21 +237,18 @@ The following packages define the contracts between Jobbr and extensions
 .. _cm-artefactstorage-badge-nuget-pre:      https://www.nuget.org/packages/Jobbr.ComponentModel.ArtefactStorage
 .. |cm-artefactstorage-badge-nuget-pre|      image::  https://img.shields.io/nuget/vpre/Jobbr.ComponentModel.ArtefactStorage.svg?label=pre%20%20%20%20
 
+.. _roadmap:
 
 Roadmap
 =======
 
-The issues are split across the different repositories where they belong to. However, the list if issues can still be aggregated for the whole organisation:
+The issues are split across the different repositories where they belong to. However, with GitHub Projects and explicit filters we can aggregate all the issue for the whole organisation:
 
-* `Open issues planned for 1.0`_
-* `Open issues planned for 1.1`_
-* `Open issues planned for vNext`_
+* `GitHub Project for v3.0.x`_
 * `Unplanned Issues`_
-* `All open issues`_ (for all milestones)
+* `All open issues`_
 
-.. _Open issues planned for 1.0:        https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3AjobbrIO+milestone%3A1.0+
-.. _Open issues planned for 1.1:        https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3AjobbrIO+milestone%3A1.1+
-.. _Open issues planned for vNext:      https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3AjobbrIO+milestone%3AvNext+
+.. _GitHub Project for v3.0.x:          https://github.com/orgs/jobbrIO/projects/5
 .. _Unplanned Issues:                   https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+user%3AjobbrIO+no%3Amilestone+
 .. _All open issues:                    https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3AjobbrIO
 
@@ -275,7 +272,7 @@ Very briefly this means:
 * Additionally ``master`` is merged back to ``develop`` after release
 
 .. _Git Flow:                    https://nvie.com/posts/a-successful-git-branching-model/
-.. _Gitversion:                  https://gitversion.net/
+.. _GitVersion:                  https://gitversion.net/
 .. _Sematic Versioning (SemVer): https://semver.org/
 
 Dependencies
