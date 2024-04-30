@@ -4,8 +4,8 @@
 
 You'll need to install the following tools in order to compile the different projects
 
-- Microsoft .NET Framework 4.6.2 Developer Pack and Language Packs from [Microsoft Download Center](https://www.microsoft.com/en-us/download/confirmation.aspx?id=53321)
-- Microsoft Visual Studio 2015 from https://www.visualstudio.com/downloads/
+- Microsoft Visual Studio 2022 from https://www.visualstudio.com/downloads/
+- The .NET SDK shipped with Visual Studio 2022 is sufficient, alternatively install the .NET 6 SDK
 
 
 ## Dashboard Frontend
