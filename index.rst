@@ -54,6 +54,7 @@ This section also convers tips on contributions as well as how we release and ho
 .. toctree::
    :maxdepth: 1
    :glob:
+   :reversed:
    :caption: Meeting Notes
 
    proj/meetings/*
