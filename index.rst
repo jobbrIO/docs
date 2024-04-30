@@ -55,6 +55,14 @@ This section also covers tips on contributions as well as how we release and how
    :maxdepth: 1
    :glob:
    :reversed:
+   :caption: Solution Designs
+
+   proj/solution-designs/*
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :reversed:
    :caption: Meeting Notes
 
    proj/meetings/*
