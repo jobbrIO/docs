@@ -9,7 +9,7 @@
 
 ## Decision
 
-- Lukas got access to the GitHub organisation, the NuGet organisation, ReadTheDocs, and Appveyor
+- Lukas got access to the GitHub organization, the NuGet organization, ReadTheDocs, and Appveyor
 - Lukas takes over development, especially for the .NET 6 migration
 
 ---
@@ -20,7 +20,7 @@ Jobbr was originally created for a Zühlke project that experienced issues with 
 
 ## Organisational
 
-Nobody from the original team is actively maintaing Jobbr anymore.  
+Nobody from the original team is actively maintaining Jobbr anymore.  
 As Jobbr is still in use on at least one project Lukas works on, he'll take over the development, especially to migrate the whole project to .NET 6.
 
 ## Infrastructure

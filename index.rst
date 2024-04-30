@@ -2,9 +2,9 @@ Home of the Jobbr Documentation
 ===============================
 
 Thank you for your interest in Jobbr, the .NET JobServer!  
-You can find all the source code of the main repository and extensions over at the GitHub Organisation page: https://github.com/JobbrIO
+You can find all the source code of the main repository and extensions over at the GitHub Organization page: https://github.com/JobbrIO
 
-We created a small set of articles to start with learning how Jobbr will help you implement background jobs more efficently,
+We created a small set of articles to start with learning how Jobbr will help you implement background jobs more efficiently,
 the motivation behind creating an(other) embeddable job server in C#, and who's behind all of this.
 
 .. toctree::
@@ -29,12 +29,12 @@ It also highlights the available options and contains suggestions on how to deal
    use/execution
    use/rest-api
    use/persistence
-   use/recommondations
+   use/recommendations
 
 If you happen to miss a specific feature and plan to extend Jobbr, or ran into an issue which you want to help fix,
 it's important to know where and what the architectural decisions were in the past so that you can understand and align with them.
 
-This section also convers tips on contributions as well as how we release and how version bumps are made.
+This section also covers tips on contributions as well as how we release and how version bumps are made.
 
 .. toctree::
    :maxdepth: 2

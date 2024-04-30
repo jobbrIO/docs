@@ -616,7 +616,7 @@ Content-Type: application/json
 ]
 ```
 
-> Note that the second job has not yet completed and thus did not collect any artefacts from the Run-Directory.
+> Note that the second job has not yet completed and thus did not collect any artifacts from the Run-Directory.
 
 #### Single JobRun details
 
@@ -680,7 +680,7 @@ Artefacts are listed as object array in the property `artefacts`. To download a 
 http://localhost:8765/api/jobruns/1/artefact/report.log HTTP/1.1
 ```
 
-and the file with the approriate headers will be returned
+and the file with the appropriate headers will be returned
 
 ```
 HTTP/1.1 200 OK

@@ -242,7 +242,7 @@ The following packages define the contracts between Jobbr and extensions
 Roadmap
 =======
 
-The issues are split across the different repositories where they belong to. However, with GitHub Projects and explicit filters we can aggregate all the issue for the whole organisation:
+The issues are split across the different repositories where they belong to. However, with GitHub Projects and explicit filters we can aggregate all the issue for the whole organization:
 
 * `GitHub Project for v3.0.x`_
 * `Unplanned Issues`_
